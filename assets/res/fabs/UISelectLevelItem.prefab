@@ -127,7 +127,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 197.407,
+      "width": 180,
       "height": 97.42163636363638
     },
     "_anchorPoint": {
@@ -164,7 +164,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "d692ce04-ce53-4744-aff9-f4825259e53c@11f6c",
+      "__uuid__": "02ad0f81-25b2-4d0b-ba8f-3f4037de6210@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -179,10 +179,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_useGrayscale": false,
-    "_atlas": {
-      "__uuid__": "d692ce04-ce53-4744-aff9-f4825259e53c",
-      "__expectedType__": "cc.SpriteAtlas"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -225,8 +222,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -12.667,
-      "y": 0,
+      "x": -17.667,
+      "y": -8,
       "z": 0
     },
     "_lrot": {
@@ -297,9 +294,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_string": "1",
@@ -315,7 +312,7 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_isItalic": false,
-    "_isBold": false,
+    "_isBold": true,
     "_isUnderline": false,
     "_underlineHeight": 2,
     "_cacheMode": 0,
@@ -328,7 +325,7 @@
       "a": 255
     },
     "_outlineWidth": 2,
-    "_enableShadow": false,
+    "_enableShadow": true,
     "_shadowColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -339,7 +336,7 @@
     "_shadowOffset": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": 2
+      "y": -2
     },
     "_shadowBlur": 2,
     "_id": ""

@@ -8,7 +8,7 @@ export class UIWin extends Component {
     protected start(): void {
         // Engine.instance.jsb.showRankView('level');
         // Engine.instance.jsb.Jsb.showInstertView('');
-        
+
         this.show();
     }
 
@@ -46,7 +46,7 @@ export class UIWin extends Component {
             labelNode.setWorldPosition(new Vec3(ut.width * randomRange(1.2, 3), ut.height * randomRange(0.7, 0.9), 0));
 
             let label = labelNode.getComponent(Label);
-            let index = randomRangeInt(0, tips.length );
+            let index = randomRangeInt(0, tips.length);
             label.string = tips[index];
             tips.splice(index, 1);
         }

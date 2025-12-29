@@ -690,7 +690,7 @@ export class Arrow extends Component {
                     }
                 } else if (self.index == 49) {
                     let toa = Engine.instance.arrows.find(p => p.index == 10);
-                    if(toa.node.angle == 0){
+                    if (toa.node.angle == 0) {
                         if (highlightedCircle && highlightedCircle.index == 72) {
                             console.log("直接消除1")
                             const targetAngle = Utils.getRotationFromDirection(highlightedCircle.node.getWorldPosition(), arrowNode.getWorldPosition());
@@ -882,7 +882,7 @@ export class Arrow extends Component {
                 Engine.instance.hideMask();
                 Engine.instance.checkIsGameOVer();
             }
-            if (this.node.worldPositionY >= Engine.instance.canvasUt.height * 1.5 || this.node.worldPositionY <= -Engine.instance.canvasUt.height / 2) {
+            if (this.node.worldPosition.y >= Engine.instance.canvasUt.height * 1.5 || this.node.worldPosition.y <= -Engine.instance.canvasUt.height / 2) {
                 this.isMoving = false;
                 this.isOver = true;
                 this.node.active = false;

@@ -89,6 +89,9 @@ export class Engine extends Component {
     @property(Label)
     timeLabel: Label;
 
+    @property(Node)
+    cblNode: Node;
+
     canvasUt: UITransform;
 
     static instance: Engine;
@@ -143,7 +146,32 @@ export class Engine extends Component {
             avatarUrl: '',
         }
 
+        this.cblNode.active = false;
         this.refreshLevelLabel();
+
+    }
+
+    showCbl() {
+        this.cblNode.active = true;
+    }
+
+    hideCbl() {
+        this.cblNode.active = false;
+    }
+
+    goCbl() {
+        let that = this;
+        // @ts-ignore
+        tt.navigateToScene({
+            scene: "sidebar",
+            success: (res) => {
+                console.log("侧边栏打开成功");
+                that.hideCbl();
+            },
+            fail: (res) => {
+                console.log("侧边栏打开失败: ", res);
+            },
+        });
 
     }
 
@@ -836,7 +864,7 @@ export class Engine extends Component {
     canMoveTowardArrow(arrow: Arrow, highlightedCircle: Circle): Arrow | Obstacle {
         if (!highlightedCircle) return null;
 
-        const arrowPos = new math.Vec2(arrow.node.worldPositionX, arrow.node.worldPositionY);
+        const arrowPos = new math.Vec2(arrow.node.worldPosition.x, arrow.node.worldPosition.y);
         const circlePos = highlightedCircle.node.getWorldPosition();
         // 计算箭头朝小球方向的单位向量
         const direction = new math.Vec2(circlePos.x - arrowPos.x, circlePos.y - arrowPos.y).normalize();

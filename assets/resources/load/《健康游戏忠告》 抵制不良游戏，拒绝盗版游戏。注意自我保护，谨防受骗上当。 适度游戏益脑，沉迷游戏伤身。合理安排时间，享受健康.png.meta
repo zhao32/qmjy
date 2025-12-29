@@ -1,0 +1,134 @@
+{
+  "ver": "1.0.27",
+  "importer": "image",
+  "imported": true,
+  "uuid": "44707a0a-6ca3-4696-a6d4-f689d9a8dc6f",
+  "files": [
+    ".json",
+    ".png"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "44707a0a-6ca3-4696-a6d4-f689d9a8dc6f@6c48a",
+      "displayName": "《健康游戏忠告》 抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。 适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "44707a0a-6ca3-4696-a6d4-f689d9a8dc6f",
+        "visible": false
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "44707a0a-6ca3-4696-a6d4-f689d9a8dc6f@f9941",
+      "displayName": "《健康游戏忠告》 抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。 适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0.5,
+        "trimX": 3,
+        "trimY": 2,
+        "width": 660,
+        "height": 113,
+        "rawWidth": 666,
+        "rawHeight": 118,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [
+            -330,
+            -56.5,
+            0,
+            330,
+            -56.5,
+            0,
+            -330,
+            56.5,
+            0,
+            330,
+            56.5,
+            0
+          ],
+          "indexes": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            3
+          ],
+          "uv": [
+            3,
+            116,
+            663,
+            116,
+            3,
+            3,
+            663,
+            3
+          ],
+          "nuv": [
+            0.0045045045045045045,
+            0.025423728813559324,
+            0.9954954954954955,
+            0.025423728813559324,
+            0.0045045045045045045,
+            0.9830508474576272,
+            0.9954954954954955,
+            0.9830508474576272
+          ],
+          "minPos": [
+            -330,
+            -56.5,
+            0
+          ],
+          "maxPos": [
+            330,
+            56.5,
+            0
+          ]
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "44707a0a-6ca3-4696-a6d4-f689d9a8dc6f@6c48a",
+        "atlasUuid": ""
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "hasAlpha": true,
+    "type": "sprite-frame",
+    "fixAlphaTransparencyArtifacts": false,
+    "redirect": "44707a0a-6ca3-4696-a6d4-f689d9a8dc6f@6c48a"
+  }
+}

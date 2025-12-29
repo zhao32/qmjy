@@ -37,22 +37,22 @@ export class UISelectLevel extends Component {
             }, this)
             lv++;
         }
-        // for (const key of keys) {
-        //     let item = instantiate(this.itemFab);
-        //     this.content.addChild(item);
-        //     let l = lv;
-        //     item.getChildByName("levelLabel").getComponent(Label).string = (l).toString();
-        //     if(l > maxLevel){
-        //         item.children[0].getComponent(Sprite).color = Color.GRAY;
-        //     }
-        //     item.on(Node.EventType.TOUCH_END, () => {
-        //         if(l<=maxLevel){
-        //             Engine.instance.onStartLevel(l);
-        //             this.hide();
-        //         }
-        //     }, this)
-        //     lv++;
-        // }
+        for (const key of keys) {
+            let item = instantiate(this.itemFab);
+            this.content.addChild(item);
+            let l = lv;
+            item.getChildByName("levelLabel").getComponent(Label).string = (l).toString();
+            if (l > maxLevel) {
+                item.children[0].getComponent(Sprite).color = Color.GRAY;
+            }
+            item.on(Node.EventType.TOUCH_END, () => {
+                if (l <= maxLevel) {
+                    Engine.instance.onStartLevel(l);
+                    this.hide();
+                }
+            }, this)
+            lv++;
+        }
     }
 
     hide() {

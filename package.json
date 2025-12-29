@@ -2,7 +2,7 @@
   "name": "全面解压300关-源码",
   "uuid": "8d9b856c-8a42-4d04-b34f-83cae812c82d",
   "creator": {
-    "version": "3.8.6"
+    "version": "3.8.5"
   },
   "dependencies": {
     "minigame-api-typings": "^3.8.11"
