@@ -1,0 +1,30 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="cats" Type="Plist" ID="77a08a97-9594-4c58-ad11-f9c925ebcc8f" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="cat/jiao1.png" />
+      <FilePathData Path="cat/jiao2.png" />
+      <FilePathData Path="cat/shen1.png" />
+      <FilePathData Path="cat/shen2.png" />
+      <FilePathData Path="cat/shen3.png" />
+      <FilePathData Path="cat/tou1.png" />
+      <FilePathData Path="cat/tou2.png" />
+      <FilePathData Path="cat/tou3.png" />
+      <FilePathData Path="cat/wei1.png" />
+      <FilePathData Path="cat/wei2.png" />
+      <FilePathData Path="cat/wei3.png" />
+      <FilePathData Path="cat/yan1.png" />
+      <FilePathData Path="cat/yan2.png" />
+      <FilePathData Path="cat/yan3.png" />
+      <FilePathData Path="cat/yan4.png" />
+      <FilePathData Path="cat/yuan.png" />
+      <FilePathData Path="cat/title.png" />
+      <FilePathData Path="cat/obs_tutle_ke.png" />
+      <FilePathData Path="cat/obs_tutle_shou.png" />
+      <FilePathData Path="cat/obs_tutle_tou.png" />
+      <FilePathData Path="cat/obs_tutle_tui.png" />
+      <FilePathData Path="cat/obs_tutle_wei.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

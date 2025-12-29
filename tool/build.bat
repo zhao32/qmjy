@@ -1,0 +1,1 @@
+ts-node tools/XlsxToJson.ts

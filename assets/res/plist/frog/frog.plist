@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>frog/huanggupao.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{50,61},{45,66}}</string>
+				<key>offset</key>
+				<string>{1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{47,70}</string>
+			</dict>
+			<key>frog/huanghoujiao.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{189,1},{47,85}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{51,89}</string>
+			</dict>
+			<key>frog/huangqiantui.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{144,61},{30,96}}</string>
+				<key>offset</key>
+				<string>{1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{33,100}</string>
+			</dict>
+			<key>frog/huangshenti.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{92,58}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{95,63}</string>
+			</dict>
+			<key>frog/huangyanjing.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,148},{19,55}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{22,57}</string>
+			</dict>
+			<key>frog/qinggupao.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{97,61},{45,66}}</string>
+				<key>offset</key>
+				<string>{1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{47,70}</string>
+			</dict>
+			<key>frog/qinghoujiao.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,61},{47,85}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{51,89}</string>
+			</dict>
+			<key>frog/qingqiantui.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{50,129},{30,96}}</string>
+				<key>offset</key>
+				<string>{1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{33,100}</string>
+			</dict>
+			<key>frog/qingshenti.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{95,1},{92,58}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{95,63}</string>
+			</dict>
+			<key>frog/qingyanjing.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{22,148},{19,55}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{22,57}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>frog.png</string>
+			<key>realTextureFileName</key>
+			<string>frog.png</string>
+			<key>size</key>
+			<string>{237,226}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>237</integer>
+			<key>height</key>
+			<integer>226</integer>
+		</dict>
+	</dict>
+</plist>

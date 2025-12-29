@@ -1,0 +1,122 @@
+CCEffect %{
+techniques:
+  - passes:
+      - vert: sprite-vs:vert
+        frag: sprite-fs:frag
+        depthStencilState:
+          depthTest: false
+          depthWrite: false
+        blendState:
+          targets:
+            - blend: true
+              blendSrc: src_alpha
+              blendDst: one_minus_src_alpha
+              blendDstAlpha: one_minus_src_alpha
+        rasterizerState:
+          cullMode: none
+        properties:
+          maskColor: { value: [0.0, 0.0, 0.0, 0.7], editor: { type: color } }
+          holePosition: { value: [0.5, 0.5], editor: { type: vec2 } }
+          holeRadius: { value: 0.2 }
+          screenSize: { value: [720, 1280], editor: { type: vec2 } }
+          holeSize: { value: [0.2, 0.2], editor: { type: vec2 } }
+          holeType: { value: 0 }
+
+}%
+
+CCProgram sprite-vs %{
+precision highp float;
+#include <builtin/uniforms/cc-global>
+#if USE_LOCAL
+  #include <builtin/uniforms/cc-local>
+#endif
+#if SAMPLE_FROM_RT
+  #include <common/common-define>
+#endif
+in vec3 a_position;
+in vec2 a_texCoord;
+in vec4 a_color;
+
+out vec4 color;
+out vec2 uv0;
+out vec3 worldPosition; // 输出世界坐标
+
+vec4 vert() {
+  vec4 pos = vec4(a_position, 1);
+  
+  #if USE_LOCAL
+    pos = cc_matWorld * pos;
+  #endif
+  
+  worldPosition = pos.xyz; // 保存世界坐标
+  
+  #if USE_PIXEL_ALIGNMENT
+    pos = cc_matView * pos;
+    pos.xyz = floor(pos.xyz);
+    pos = cc_matProj * pos;
+  #else
+    pos = cc_matViewProj * pos;
+  #endif
+  
+  uv0 = a_texCoord;
+  #if SAMPLE_FROM_RT
+    CC_HANDLE_RT_SAMPLE_FLIP(uv0);
+  #endif
+  color = a_color;
+  
+  return pos;
+}
+}%
+
+CCProgram sprite-fs %{
+precision highp float;
+#include <builtin/internal/embedded-alpha>
+#include <builtin/internal/alpha-test>
+#include <builtin/uniforms/cc-global>
+
+in vec4 color;
+in vec3 worldPosition; // 接收世界坐标
+
+layout(set = 0, binding = 1)uniform MaskUniforms {
+  vec4 maskColor; // 遮罩颜色
+  vec2 holePosition; // 镂空位置（0-1 范围内）
+  vec2 screenSize; // 屏幕尺寸
+  vec2 holeSize; // 矩形镂空大小（相对于屏幕宽度和高度）
+  float holeRadius; // 圆形镂空半径（相对于屏幕宽度）
+  int holeType; // 镂空类型：0 = 圆形，1 = 矩形
+};
+
+#if USE_TEXTURE
+  in vec2 uv0;
+  #pragma builtin(local)
+  layout(set = 2, binding = 12)uniform sampler2D cc_spriteTexture;
+#endif
+
+vec4 frag() {
+  
+  // 将 holePosition 从 [0, 1] 范围转换为世界坐标    
+  vec3 holePositionWorld = vec3(holePosition * screenSize, 0.0);
+  
+  if (holeType == 0) {
+    // 计算当前像素与镂空区域中心的距离    
+    float dist = length(worldPosition.xy - holePositionWorld.xy);
+    
+    // 如果距离小于镂空半径，则透明；否则显示遮罩颜色    
+    if (dist < holeRadius * screenSize.x) {
+      discard; // 镂空部分
+    }
+  } else if (holeType == 1) {
+    // 矩形镂空逻辑 
+    vec2 halfSize = holeSize * 0.5 * screenSize; // 转换为世界坐标的矩形大小
+    vec2 currentPosition = worldPosition.xy; // 当前像素的世界坐标
+    vec2 minBounds = holePositionWorld.xy - halfSize;
+    vec2 maxBounds = holePositionWorld.xy + halfSize;
+    
+    if (currentPosition.x > minBounds.x && currentPosition.x < maxBounds.x &&
+    currentPosition.y > minBounds.y && currentPosition.y < maxBounds.y) {
+      discard; // 镂空部分
+    }
+  }
+  return maskColor; // 遮罩部分
+}
+}%

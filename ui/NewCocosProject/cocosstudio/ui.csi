@@ -1,0 +1,45 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="ui" Type="Plist" ID="aecea344-89a2-4823-9703-d1e4aa40059d" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="False" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="ui/btnHelp.png" />
+      <FilePathData Path="ui/btnSetting.png" />
+      <FilePathData Path="ui/imgRed.png" />
+      <FilePathData Path="ui/btn1.png" />
+      <FilePathData Path="ui/btn2.png" />
+      <FilePathData Path="ui/btn3.png" />
+      <FilePathData Path="ui/btn4.png" />
+      <FilePathData Path="ui/btn5.png" />
+      <FilePathData Path="ui/btnHome.png" />
+      <FilePathData Path="ui/btnRefresh.png" />
+      <FilePathData Path="ui/f.png" />
+      <FilePathData Path="ui/g.png" />
+      <FilePathData Path="ui/img_quan.png" />
+      <FilePathData Path="ui/jixuyouxi.png" />
+      <FilePathData Path="ui/kaishi.png" />
+      <FilePathData Path="ui/shezhi.png" />
+      <FilePathData Path="ui/tongguan.png" />
+      <FilePathData Path="ui/xiaotubiao.png" />
+      <FilePathData Path="ui/xiayiguan.png" />
+      <FilePathData Path="ui/yinxiao.png" />
+      <FilePathData Path="ui/yinyue.png" />
+      <FilePathData Path="ui/zhendong.png" />
+      <FilePathData Path="ui/btnClose.png" />
+      <FilePathData Path="ui/btnRank.png" />
+      <FilePathData Path="ui/ranktitle.png" />
+      <FilePathData Path="ui/img_ad.png" />
+      <FilePathData Path="ui/img_tip.png" />
+      <FilePathData Path="ui/obs_shell.png" />
+      <FilePathData Path="ui/adtipplane.png" />
+      <FilePathData Path="ui/btnShare.png" />
+      <FilePathData Path="ui/btnShouChang.png" />
+      <FilePathData Path="ui/sharetitle.png" />
+      <FilePathData Path="ui/shouchangtitle.png" />
+      <FilePathData Path="ui/img_circle.png" />
+      <FilePathData Path="ui/coin.png" />
+      <FilePathData Path="ui/ico_shijian.png" />
+      <FilePathData Path="ui/xuanguanbtn.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

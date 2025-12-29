@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>pangxie3/hou1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{399,1},{45,27}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{46,27}</string>
+			</dict>
+			<key>pangxie3/hou2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{344,28},{31,38}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{34,38}</string>
+			</dict>
+			<key>pangxie3/qian1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{152,42},{35,48}}</string>
+				<key>offset</key>
+				<string>{1,-1}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{37,49}</string>
+			</dict>
+			<key>pangxie3/qian2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{293,31},{25,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{25,38}</string>
+			</dict>
+			<key>pangxie3/qian3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{99,1},{44,51}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{44,53}</string>
+			</dict>
+			<key>pangxie3/qian4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{99,47},{31,47}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{31,47}</string>
+			</dict>
+			<key>pangxie3/qian5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{247,1},{44,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{44,32}</string>
+			</dict>
+			<key>pangxie3/xieshenti.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{96,82}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{96,83}</string>
+			</dict>
+			<key>pangxie3/zhong1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{293,1},{49,28}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{49,28}</string>
+			</dict>
+			<key>pangxie3/zhong2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{152,1},{48,39}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{48,39}</string>
+			</dict>
+			<key>pangxie3/zhong3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{344,1},{53,25}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{53,25}</string>
+			</dict>
+			<key>pangxie3/zhong4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{202,1},{43,42}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{46,43}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>pangxie3.png</string>
+			<key>realTextureFileName</key>
+			<string>pangxie3.png</string>
+			<key>size</key>
+			<string>{445,84}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>445</integer>
+			<key>height</key>
+			<integer>84</integer>
+		</dict>
+	</dict>
+</plist>

@@ -1,0 +1,18 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="frog" Type="Plist" ID="94c15999-c9e6-4ae9-b574-86d9a97fde6f" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="False" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="frog/huanggupao.png" />
+      <FilePathData Path="frog/huanghoujiao.png" />
+      <FilePathData Path="frog/huangqiantui.png" />
+      <FilePathData Path="frog/huangshenti.png" />
+      <FilePathData Path="frog/huangyanjing.png" />
+      <FilePathData Path="frog/qinggupao.png" />
+      <FilePathData Path="frog/qinghoujiao.png" />
+      <FilePathData Path="frog/qingqiantui.png" />
+      <FilePathData Path="frog/qingshenti.png" />
+      <FilePathData Path="frog/qingyanjing.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

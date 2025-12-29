@@ -1,0 +1,201 @@
+{
+  "ver": "1.0.8",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {
+    "59a36": {
+      "importer": "sprite-frame",
+      "uuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78@59a36",
+      "displayName": "",
+      "id": "59a36",
+      "name": "fish/yushenti",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 164,
+        "height": 254,
+        "rawWidth": 164,
+        "rawHeight": 254,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "17d41f47-71e9-41a4-8718-1a301d6faebb@6c48a",
+        "atlasUuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e7eec": {
+      "importer": "sprite-frame",
+      "uuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78@e7eec",
+      "displayName": "",
+      "id": "e7eec",
+      "name": "fish/yuyan1",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 257,
+        "width": 44,
+        "height": 44,
+        "rawWidth": 44,
+        "rawHeight": 44,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "17d41f47-71e9-41a4-8718-1a301d6faebb@6c48a",
+        "atlasUuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "512ff": {
+      "importer": "sprite-frame",
+      "uuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78@512ff",
+      "displayName": "",
+      "id": "512ff",
+      "name": "fish/yuyan2",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 340,
+        "width": 14,
+        "height": 42,
+        "rawWidth": 14,
+        "rawHeight": 42,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "17d41f47-71e9-41a4-8718-1a301d6faebb@6c48a",
+        "atlasUuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "5a0d1": {
+      "importer": "sprite-frame",
+      "uuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78@5a0d1",
+      "displayName": "",
+      "id": "5a0d1",
+      "name": "fish/hurt",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 303,
+        "width": 33,
+        "height": 35,
+        "rawWidth": 33,
+        "rawHeight": 35,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "17d41f47-71e9-41a4-8718-1a301d6faebb@6c48a",
+        "atlasUuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "fish.png",
+    "format": 2,
+    "uuid": "4428cf5e-30d9-470d-850a-6238b4f6ee78",
+    "textureUuid": "17d41f47-71e9-41a4-8718-1a301d6faebb@6c48a"
+  }
+}

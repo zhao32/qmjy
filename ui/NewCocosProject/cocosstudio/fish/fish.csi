@@ -1,0 +1,12 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="fish" Type="Plist" ID="83f61638-3732-491d-acd4-4504d616c3e9" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="False" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="fish/yushenti.png" />
+      <FilePathData Path="fish/yuyan1.png" />
+      <FilePathData Path="fish/yuyan2.png" />
+      <FilePathData Path="fish/hurt.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

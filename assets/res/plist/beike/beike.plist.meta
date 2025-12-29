@@ -1,0 +1,247 @@
+{
+  "ver": "1.0.8",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "99b1479b-f16c-49ec-b515-3da9655e0846",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {
+    "56248": {
+      "importer": "sprite-frame",
+      "uuid": "99b1479b-f16c-49ec-b515-3da9655e0846@56248",
+      "displayName": "",
+      "id": "56248",
+      "name": "beike/beikeopen",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 403,
+        "height": 228,
+        "rawWidth": 403,
+        "rawHeight": 228,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "eaa0ae6e-eaa9-4731-a69d-457bb5199685@6c48a",
+        "atlasUuid": "99b1479b-f16c-49ec-b515-3da9655e0846",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "b1035": {
+      "importer": "sprite-frame",
+      "uuid": "99b1479b-f16c-49ec-b515-3da9655e0846@b1035",
+      "displayName": "",
+      "id": "b1035",
+      "name": "beike/beikeclose",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 814,
+        "trimY": 1,
+        "width": 406,
+        "height": 184,
+        "rawWidth": 406,
+        "rawHeight": 184,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "eaa0ae6e-eaa9-4731-a69d-457bb5199685@6c48a",
+        "atlasUuid": "99b1479b-f16c-49ec-b515-3da9655e0846",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d2f26": {
+      "importer": "sprite-frame",
+      "uuid": "99b1479b-f16c-49ec-b515-3da9655e0846@d2f26",
+      "displayName": "",
+      "id": "d2f26",
+      "name": "beike/beikedi",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 406,
+        "trimY": 1,
+        "width": 406,
+        "height": 225,
+        "rawWidth": 406,
+        "rawHeight": 225,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "eaa0ae6e-eaa9-4731-a69d-457bb5199685@6c48a",
+        "atlasUuid": "99b1479b-f16c-49ec-b515-3da9655e0846",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "ce1f5": {
+      "importer": "sprite-frame",
+      "uuid": "99b1479b-f16c-49ec-b515-3da9655e0846@ce1f5",
+      "displayName": "",
+      "id": "ce1f5",
+      "name": "beike/beikecircle",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 624,
+        "trimY": 228,
+        "width": 135,
+        "height": 136,
+        "rawWidth": 135,
+        "rawHeight": 136,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "eaa0ae6e-eaa9-4731-a69d-457bb5199685@6c48a",
+        "atlasUuid": "99b1479b-f16c-49ec-b515-3da9655e0846",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e1c83": {
+      "importer": "sprite-frame",
+      "uuid": "99b1479b-f16c-49ec-b515-3da9655e0846@e1c83",
+      "displayName": "",
+      "id": "e1c83",
+      "name": "beike/beikelight",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 406,
+        "trimY": 228,
+        "width": 179,
+        "height": 216,
+        "rawWidth": 179,
+        "rawHeight": 216,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "eaa0ae6e-eaa9-4731-a69d-457bb5199685@6c48a",
+        "atlasUuid": "99b1479b-f16c-49ec-b515-3da9655e0846",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "beike.png",
+    "format": 2,
+    "uuid": "99b1479b-f16c-49ec-b515-3da9655e0846",
+    "textureUuid": "eaa0ae6e-eaa9-4731-a69d-457bb5199685@6c48a"
+  }
+}

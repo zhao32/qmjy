@@ -1,0 +1,13 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="beike" Type="Plist" ID="dd46d27f-73d8-42fe-bae1-a230307a997c" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="beike/beikeclose.png" />
+      <FilePathData Path="beike/beikeopen.png" />
+      <FilePathData Path="beike/beikedi.png" />
+      <FilePathData Path="beike/beikecircle.png" />
+      <FilePathData Path="beike/beikelight.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

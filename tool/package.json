@@ -1,0 +1,25 @@
+{
+  "name": "yixianzhiming",
+  "version": "1.0.0",
+  "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
+  "main": "index.js",
+  "scripts": {
+    "build": "ts-node tools/XlsxToJson.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "npx": "^10.2.2",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/moment-timezone": "^0.5.30",
+    "ts-morph": "^21.0.1",
+    "xlsx": "^0.18.5"
+  }
+}

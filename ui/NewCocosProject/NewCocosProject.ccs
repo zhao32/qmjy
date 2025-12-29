@@ -1,0 +1,154 @@
+<Solution>
+  <PropertyGroup Name="NewCocosProject" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="beike">
+          <PlistInfo Name="beike.csi" Type="Plist" />
+          <Image Name="beikecircle.png" />
+          <Image Name="beikeclose.png" />
+          <Image Name="beikedi.png" />
+          <Image Name="beikelight.png" />
+          <Image Name="beikeopen.png" />
+        </Folder>
+        <Folder Name="cat">
+          <Image Name="jiao1.png" />
+          <Image Name="jiao2.png" />
+          <Image Name="obs_tutle_ke.png" />
+          <Image Name="obs_tutle_shou.png" />
+          <Image Name="obs_tutle_tou.png" />
+          <Image Name="obs_tutle_tui.png" />
+          <Image Name="obs_tutle_wei.png" />
+          <Image Name="shen1.png" />
+          <Image Name="shen2.png" />
+          <Image Name="shen3.png" />
+          <Image Name="title.png" />
+          <Image Name="tou1.png" />
+          <Image Name="tou2.png" />
+          <Image Name="tou3.png" />
+          <Image Name="wei1.png" />
+          <Image Name="wei2.png" />
+          <Image Name="wei3.png" />
+          <Image Name="yan1.png" />
+          <Image Name="yan2.png" />
+          <Image Name="yan3.png" />
+          <Image Name="yan4.png" />
+          <Image Name="yuan.png" />
+        </Folder>
+        <Folder Name="fish">
+          <PlistInfo Name="fish.csi" Type="Plist" />
+          <Image Name="hurt.png" />
+          <Image Name="yushenti.png" />
+          <Image Name="yuyan1.png" />
+          <Image Name="yuyan2.png" />
+        </Folder>
+        <Folder Name="frog">
+          <PlistInfo Name="frog.csi" Type="Plist" />
+          <Image Name="huanggupao.png" />
+          <Image Name="huanghoujiao.png" />
+          <Image Name="huangqiantui.png" />
+          <Image Name="huangshenti.png" />
+          <Image Name="huangyanjing.png" />
+          <Image Name="qinggupao.png" />
+          <Image Name="qinghoujiao.png" />
+          <Image Name="qingqiantui.png" />
+          <Image Name="qingshenti.png" />
+          <Image Name="qingyanjing.png" />
+        </Folder>
+        <Folder Name="pangxie1">
+          <Image Name="hou1.png" />
+          <Image Name="hou2.png" />
+          <Image Name="qian1.png" />
+          <Image Name="qian2.png" />
+          <Image Name="qian3.png" />
+          <Image Name="qian4.png" />
+          <Image Name="qian5.png" />
+          <Image Name="xieshenti.png" />
+          <Image Name="xieyanjing.png" />
+          <Image Name="zhong1.png" />
+          <Image Name="zhong2.png" />
+          <Image Name="zhong3.png" />
+          <Image Name="zhong4.png" />
+        </Folder>
+        <Folder Name="pangxie2">
+          <Image Name="hou1.png" />
+          <Image Name="hou2.png" />
+          <Image Name="qian1.png" />
+          <Image Name="qian2.png" />
+          <Image Name="qian3.png" />
+          <Image Name="qian4.png" />
+          <Image Name="qian5.png" />
+          <Image Name="xieshenti.png" />
+          <Image Name="xieyanjing.png" />
+          <Image Name="zhong1.png" />
+          <Image Name="zhong2.png" />
+          <Image Name="zhong3.png" />
+          <Image Name="zhong4.png" />
+        </Folder>
+        <Folder Name="pangxie3">
+          <Image Name="hou1.png" />
+          <Image Name="hou2.png" />
+          <Image Name="qian1.png" />
+          <Image Name="qian2.png" />
+          <Image Name="qian3.png" />
+          <Image Name="qian4.png" />
+          <Image Name="qian5.png" />
+          <Image Name="xieshenti.png" />
+          <Image Name="zhong1.png" />
+          <Image Name="zhong2.png" />
+          <Image Name="zhong3.png" />
+          <Image Name="zhong4.png" />
+        </Folder>
+        <Folder Name="ui">
+          <Image Name="adtipplane.png" />
+          <Image Name="btn1.png" />
+          <Image Name="btn2.png" />
+          <Image Name="btn3.png" />
+          <Image Name="btn4.png" />
+          <Image Name="btn5.png" />
+          <Image Name="btnClose.png" />
+          <Image Name="btnHelp.png" />
+          <Image Name="btnHome.png" />
+          <Image Name="btnRank.png" />
+          <Image Name="btnRefresh.png" />
+          <Image Name="btnSetting.png" />
+          <Image Name="btnShare.png" />
+          <Image Name="btnShouChang.png" />
+          <Image Name="btnTip.png" />
+          <Image Name="coin.png" />
+          <Image Name="f.png" />
+          <Image Name="g.png" />
+          <Image Name="gametip.png" />
+          <Image Name="ico_shijian.png" />
+          <Image Name="img_ad.png" />
+          <Image Name="img_circle.png" />
+          <Image Name="img_quan.png" />
+          <Image Name="img_tip.png" />
+          <Image Name="imgRed.png" />
+          <Image Name="jixuyouxi.png" />
+          <Image Name="kai.png" />
+          <Image Name="kaishi.png" />
+          <Image Name="obs_shell.png" />
+          <Image Name="obs_turtle.png" />
+          <Image Name="ranktitle.png" />
+          <Image Name="sharetitle.png" />
+          <Image Name="shezhi.png" />
+          <Image Name="shouchangtitle.png" />
+          <Image Name="tongguan.png" />
+          <Image Name="xiaotubiao.png" />
+          <Image Name="xiayiguan.png" />
+          <Image Name="xuanguan.png" />
+          <Image Name="xuanguanbtn.png" />
+          <Image Name="yinxiao.png" />
+          <Image Name="yinyue.png" />
+          <Image Name="zhendong.png" />
+        </Folder>
+        <PlistInfo Name="cats.csi" Type="Plist" />
+        <PlistInfo Name="pangxie1.csi" Type="Plist" />
+        <PlistInfo Name="pangxie2.csi" Type="Plist" />
+        <PlistInfo Name="pangxie3.csi" Type="Plist" />
+        <PlistInfo Name="ui.csi" Type="Plist" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
