@@ -1747,6 +1747,8 @@ export class Engine extends Component {
                 alert("请阅读并同意《用户协议》与《隐私政策》");
                 return;
             }
+        } else {
+
         }
 
         this.onStartLevel(GlobalConfig.DB.level);

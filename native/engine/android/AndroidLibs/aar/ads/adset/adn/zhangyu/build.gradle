@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('octopus_ad_sdk_1.6.3.6.aar'))

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="0dp">
+
+    <ImageView
+        android:id="@+id/bgIv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_qrcode_fullscreen_1" />
+
+    <ImageView
+        android:id="@+id/titleIv"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_qrcode_fullscreen_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="105dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/contentBgIv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/ic_qrcode_fullscreen_3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/avatarCv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="27dp"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/avatarIv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_qrcode_fullscreen_4" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/inviteCodeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="邀请码："
+            android:textColor="#97412B"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/avatarCv"
+            app:layout_constraintTop_toTopOf="@+id/avatarCv" />
+
+        <TextView
+            android:id="@+id/nicknameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text=""
+            android:textColor="#97412B"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/avatarCv"
+            app:layout_constraintStart_toEndOf="@+id/avatarCv" />
+
+        <ImageView
+            android:id="@+id/subtitleIv"
+            android:layout_width="179dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/ic_qrcode_fullscreen_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/avatarCv" />
+
+        <ImageView
+            android:id="@+id/qrcodeBgIv"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="30dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_qrcode_fullscreen_6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/qrcodeIv"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_qrcode_fullscreen_6"
+            app:layout_constraintBottom_toBottomOf="@+id/qrcodeBgIv"
+            app:layout_constraintEnd_toEndOf="@+id/qrcodeBgIv"
+            app:layout_constraintStart_toStartOf="@+id/qrcodeBgIv"
+            app:layout_constraintTop_toTopOf="@+id/qrcodeBgIv" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="长按识别二维码"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/qrcodeBgIv"
+            app:layout_constraintStart_toStartOf="@+id/qrcodeBgIv"
+            app:layout_constraintTop_toBottomOf="@+id/qrcodeBgIv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

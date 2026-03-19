@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('beizi_fusion_sdk_5.2.1.6.aar'))

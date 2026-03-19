@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('umeng-common-9.8.5.aar'))

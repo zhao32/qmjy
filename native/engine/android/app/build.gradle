@@ -1,0 +1,236 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+
+RES_PATH = RES_PATH.replace("\\", "/")
+COCOS_ENGINE_PATH = COCOS_ENGINE_PATH.replace("\\", "/")
+
+android {
+    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
+    ndkPath PROP_NDK_PATH
+    ndkVersion PROP_NDK_VERSION
+    namespace APPLICATION_ID
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    defaultConfig {
+        applicationId APPLICATION_ID
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+        versionCode APPLICATION_VERSION_CODE.toInteger()
+        versionName APPLICATION_VERSION_NAME
+
+        resValue "string", "ysdk_first", YSDK_FIRST
+        resValue "string", "taptap_gameid", TAPTAP_GAMEID
+        resValue "string", "taptap_gametoken", TAPTAP_GAMETOKEN
+        resValue "string", "hykb_gameid", HYKB_GAMEID
+        resValue "string", "m4399_gameid", M4399_GAMEID
+        resValue "string", "openinstall_key", OPENINSTALL_KEY
+        resValue "string", "app_privacy", PRIVACY_URL
+        resValue "string", "oppo_game_app_key", OPPO_GAME_APP_KEY
+        resValue "string", "oppo_game_app_secret", OPPO_GAME_APP_SECRET
+        resValue "string", "oppo_game_debug_mode", OPPO_GAME_DEBUG_MODE
+        resValue "string", "oppo_game_is_offline", OPPO_GAME_IS_OFFLINE
+        buildConfigField "String", "KEYBACK_MODE", "\"${KEYBACK_MODE}\""
+        manifestPlaceholders = [screenOrientation: PROP_SCREEN_ORIENTATION]
+
+        externalNativeBuild {
+            cmake {
+                targets "cocos"
+                arguments "-DRES_DIR=${RES_PATH}", "-DANDROID_STL=c++_static", "-DANDROID_TOOLCHAIN=clang", "-DANDROID_ARM_NEON=TRUE"
+            }
+            ndk { abiFilters PROP_APP_ABI.split(":") }
+        }
+    }
+
+    sourceSets.main {
+        java.srcDirs "../src", "src"
+        res.srcDirs "../res", "../taku_res", "res"
+        jniLibs.srcDirs "../libs", "libs"
+        assets.srcDirs "../assets", "assets", "${RES_PATH}/data"
+        manifest.srcFile "AndroidManifest.xml"
+    }
+
+    externalNativeBuild {
+        cmake {
+            version "3.22.1"
+            path "../CMakeLists.txt"
+            buildStagingDirectory "${RES_PATH}/proj/build"
+        }
+    }
+
+    signingConfigs {
+        release {
+            if (project.hasProperty("RELEASE_STORE_FILE") && !RELEASE_STORE_FILE.isEmpty()) {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            /*debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"*/
+            if (project.hasProperty("RELEASE_STORE_FILE")) {
+                signingConfig signingConfigs.release
+            }
+
+            externalNativeBuild {
+                cmake {
+                    // switch HIDE_SYMBOLS to OFF to skip compilation flag `-fvisibility=hidden`
+                    arguments "-DHIDE_SYMBOLS=ON"
+                }
+            }
+
+            if (!Boolean.parseBoolean(PROP_IS_DEBUG)) {
+                getIsDefault().set(true)
+            }
+        }
+
+        debug {
+            /*debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true*/
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation fileTree(dir: "../libs", include: ["*.jar"])
+    implementation fileTree(dir: "${COCOS_ENGINE_PATH}/cocos/platform/android/java/libs", include: ["*.jar"])
+
+    implementation project(":libservice")
+    implementation project(":libcocos")
+
+    implementation project(":ImagePicker")
+    implementation project(":PhotoView")
+    compileOnly project(":aarAlipay")
+    implementation project(":aarOkgo")
+    implementation project(":aarHykbCommon")
+    implementation project(":aarHykbAnti")
+    implementation project(":aarHykbLogin")
+    implementation project(":aarHykbSingle")
+    implementation project(":easypay:basepay")
+    implementation project(":easypay:alipay")
+    implementation project(":easypay:wxpay")
+    implementation project(":umeng")
+    implementation project(":snackbar")
+
+    implementation("androidx.webkit:webkit:1.13.0")
+
+    // 4399 内含 alipay，注意处理
+    implementation("cn.m4399.sdk:operate:3.14.4")
+    // volley 和 support 是 SDK 使用的外部依赖，若接入方已有，可忽略
+    implementation("com.android.volley:volley:1.2.1")
+
+    implementation("com.tencent.mm.opensdk:wechat-sdk-android:6.8.34")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation("com.alibaba.fastjson2:fastjson2:2.0.58.android8")
+    implementation("com.google.code.gson:gson:2.13.1")
+    implementation("com.squareup.okio:okio:3.16.0")
+    implementation("com.squareup.okhttp3:okhttp:5.1.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.1.0")
+
+    // 穿山甲，优量汇，快手联盟，百度，sigmob
+    implementation project(":aarCsj")
+    implementation project(":aarCsjGdt")
+    implementation project(":aarCsjKs")
+    implementation project(":aarCsjBaidu")
+    implementation project(":aarCsjSigmob")
+    implementation project(":aarGdt")
+    implementation project(":aarKs")
+    implementation project(":aarBaidu")
+    implementation project(":aarSigmob")
+    implementation project(":aarSigmobCommon")
+    // 穿山甲-内容输出
+    implementation("com.pangle.cn:pangrowth-base:2.8.0.1")
+    // 穿山甲-内容输出-短剧
+    implementation("com.pangle.cn:pangrowth-djx-sdk-lite:2.8.0.1")
+    // 穿山甲-内容输出-短故事
+    implementation("com.pangle.cn:pangrowth-nov-sdk:2.8.0.1")
+
+    // iqy
+    implementation project(":aarIqy")
+    implementation project(":aarIqyQiLin")
+
+    // sigmob，优量汇，快手联盟，百度，穿山甲
+    implementation project(":aarSigmobMill")
+    implementation project(":aarSigmobMillBaidu")
+    implementation project(":aarSigmobMillCsj")
+    implementation project(":aarSigmobMillGromore")
+    implementation project(":aarSigmobMillGdt")
+    implementation project(":aarSigmobMillKs")
+    implementation project(":aarSigmobMillXbid")
+
+    // adset，优量汇，快手联盟，百度，sigmob，tanx，章鱼，海量，GroMore，倍孜
+    implementation project(":aarAdSet")
+    implementation project(":aarZhangYu")
+    implementation project(":aarHaiLiang")
+    implementation project(":aarBzf")
+    implementation project(":aarAdSetGdt")
+    if (ADSET_KS.toBoolean()) implementation project(":aarAdSetKs")
+    implementation project(":aarAdSetBaidu")
+    implementation project(":aarAdSetSigmob")
+    implementation project(":aarAdSetTanx")
+    implementation project(":aarAdSetZhangYu")
+    implementation project(":aarAdSetHaiLiang")
+    implementation project(":aarAdSetGm")
+    implementation project(":aarAdSetBz")
+    implementation("io.github.aliyun-sls:aliyun-log-android-sdk:2.7.13")
+    implementation("com.hihonor.mcs:ads-identifier:1.0.2.301")
+    implementation("com.tanx:TanxUISDK:3.7.24")
+
+    // taku，穿山甲，优量汇，快手联盟，百度，sigmob，华为，米盟，oppo，vivo，taptap，tanx，京媒平台，mintrgral
+    implementation fileTree(dir: "${NATIVE_LIB}/aar/ads/taku", include: ["*.jar", "*.aar"])
+
+    // oppo
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.multidex:multidex:2.0.1")
+    implementation("androidx.sqlite:sqlite-framework:2.5.0")
+    implementation("android.arch.persistence:db-framework:1.1.1")
+    implementation("androidx.palette:palette-ktx:1.0.0")
+
+    // tapadn
+    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
+
+    implementation("com.github.yuzhiqiang1993:zxing:2.2.9")
+    implementation("com.aliyun.dpa:oss-android-sdk:2.9.21")
+
+    implementation project(":EasyProtector")
+
+    implementation("com.taptap.sdk:tap-core:4.7.0")
+    implementation("com.taptap.sdk:tap-compliance:4.7.0")
+    implementation("com.taptap.sdk:tap-login:4.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation project(":aarYSdk")
+    implementation project(":aarYSdkShell")
+    implementation project(":aarOppoGame")
+    implementation project(":aarOppoGameCommon")
+
+    implementation project(":aarAsrRealtime")
+    implementation("com.volcengine.bizssdk:ml:7.0.2.9.mlBusiness")
+}

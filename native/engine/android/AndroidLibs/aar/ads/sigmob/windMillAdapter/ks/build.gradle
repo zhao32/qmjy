@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('windmill-kuaishou-adapter-3.3.71-4.3.0.aar'))

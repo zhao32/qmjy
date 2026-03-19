@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('mediation_baidu_adapter_9.3905.2.aar'))

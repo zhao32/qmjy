@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <root-path name="root" path="." />
+    <files-path name="files" path="." />
+    <cache-path name="cache" path="." />
+    <external-path name="external" path="." />
+    <external-files-path name="external_files" path="." />
+    <external-cache-path name="external_cache" path="." />
+
+    <!-- QQ、微信 分享 SDK 共享路径 -->
+    <root-path name="opensdk_root" path="" />
+    <!-- QQ 分享 SDK 共享路径 -->
+    <external-files-path name="opensdk_external" path="Images/tmp" />
+    <!-- 微信分享 SDK 共享路径 -->
+    <external-files-path name="umeng_cache" path="umeng_cache/" />
+
+    <!-- 穿山甲 -->
+    <external-path name="tt_external_root" path="." />
+    <external-path name="tt_external_download" path="Download" />
+    <external-files-path name="tt_external_files_download" path="Download" />
+    <files-path name="tt_internal_file_download" path="Download" />
+    <cache-path name="tt_internal_cache_download" path="Download" />
+
+    <!-- 优量汇 -->
+    <external-cache-path name="gdt_sdk_download_path1" path="com_qq_e_download" />
+    <cache-path name="gdt_sdk_download_path2" path="com_qq_e_download" />
+</paths>

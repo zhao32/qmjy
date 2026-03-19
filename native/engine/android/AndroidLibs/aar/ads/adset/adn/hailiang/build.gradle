@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('hailiang-3.470.13.436.aar'))

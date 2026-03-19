@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('adset-hailiang-adatper-3.470.13.436.1.aar'))

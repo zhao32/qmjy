@@ -1,0 +1,33 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!-- 分享 ：微信 -->
+        <activity
+            android:name="com.umeng.sdk.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.umeng.sdk.wxapi.WXEntryActivity" />
+        <!-- 分享 ：QQ -->
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    </application>
+
+    <!-- Android 11 软件包可见性 -->
+    <queries>
+        <package android:name="com.sina.weibo" />
+        <package android:name="com.qzone" />
+        <package android:name="com.tencent.mobileqq" />
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.tencent.wework" />
+        <package android:name="com.alibaba.android.rimet" />
+        <package android:name="com.eg.android.AlipayGphone" />
+    </queries>
+
+</manifest>

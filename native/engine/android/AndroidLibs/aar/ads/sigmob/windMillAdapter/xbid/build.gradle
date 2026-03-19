@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('windmill-xbid-adapter-1.0.0-4.3.0.aar'))

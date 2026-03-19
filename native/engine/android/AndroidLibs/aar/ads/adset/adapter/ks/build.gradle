@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('adset-ks-ad-adatper-4.4.20.1.1.aar'))

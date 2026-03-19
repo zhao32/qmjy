@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="auto">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_BASIC_PHONE_STATE" />
+    <uses-permission android:name="android.permission.FEATURE_TELEPHONY_DATA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-sdk tools:overrideLibrary="com.bytedance.gromore,
+        com.bytedance.msdk.adapter.gdt,com.bytedance.msdk.adapter.ks,
+        com.bytedance.msdk.adapter.BaiduMobAds,com.bytedance.msdk.adapter.sigmob" />
+
+    <application
+        android:allowBackup="false"
+        android:extractNativeLibs="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:resizeableActivity="true"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        tools:replace="android:allowBackup,android:resizeableActivity,android:networkSecurityConfig">
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="cocos" />
+
+        <activity
+            android:name="com.cocos.game.LauncherActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="${screenOrientation}"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.cocos.game.AppActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize|density|fontScale|keyboard|layoutDirection|locale|mnc|mcc|navigation|uiMode|touchscreen"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="${screenOrientation}"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/openinstall_key" />
+            </intent-filter>
+        </activity>
+        <activity-alias
+            android:name="${applicationId}.AppActivity"
+            android:exported="true"
+            android:targetActivity="com.cocos.game.AppActivity" />
+        <meta-data
+            android:name="MAIN_ACTIVITY"
+            android:value="${applicationId}.AppActivity" />
+        <activity
+            android:name="com.cocos.game.WebViewActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.cocos.game.csjAdManager.DjxHomeActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.cocos.game.csjAdManager.NovHomeActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <meta-data
+            android:name="com.openinstall.APP_KEY"
+            android:value="@string/openinstall_key" />
+
+        <activity
+            android:name="com.cocos.lib.CocosEditBoxActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            tools:replace="android:configChanges" />
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/tencentscheme" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <!--穿山甲-->
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
+            android:authorities="${applicationId}.TTFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:node="replace" />
+        </provider>
+        <!--穿山甲-->
+        <!--优量汇-->
+        <provider
+            android:name="com.qq.e.comm.GDTFileProvider"
+            android:authorities="${applicationId}.gdt.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/gdt_file_path"
+                tools:node="replace" />
+        </provider>
+        <!--优量汇-->
+        <!-- YSDK，不自动初始化, 或者不需要该功能时保留此配置项; 需要该功能且想要自动初始化时删除此配置项 -->
+        <provider
+            android:name="com.tencent.ysdk.framework.YSDKInitProvider"
+            android:authorities="${applicationId}.ysdk.ysdkinitprovider"
+            android:exported="false"
+            tools:node="remove" />
+        <!-- YSDK，不自动初始化, 或者不需要该功能时保留此配置项; 需要该功能且想要自动初始化时删除此配置项 -->
+        <!-- oppo game -->
+        <receiver
+            android:name="com.nearme.game.sdk.HangupBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.nearme.game.sdk.HANGUP_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+        <meta-data
+            android:name="app_key"
+            android:value="@string/oppo_game_app_key" />
+        <meta-data
+            android:name="debug_mode"
+            android:value="@string/oppo_game_debug_mode" />
+        <meta-data
+            android:name="is_offline_game"
+            android:value="@string/oppo_game_is_offline" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+        <!-- oppo game -->
+        <!-- taku -->
+        <meta-data
+            android:name="hw_ads_sdk_type"
+            android:value="6"
+            tools:node="replace" />
+        <!-- taku -->
+    </application>
+    <queries>
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.tencent.mobileqq" />
+        <package android:name="com.sina.weibo" />
+        <package android:name="com.eg.android.AlipayGphone" />
+    </queries>
+</manifest>

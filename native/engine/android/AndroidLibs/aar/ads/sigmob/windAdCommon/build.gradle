@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('wind-common-1.8.1.aar'))

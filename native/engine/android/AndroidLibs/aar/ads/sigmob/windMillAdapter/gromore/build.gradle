@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('windmill-gromore-adapter-6.5.0.2-4.3.0.aar'))

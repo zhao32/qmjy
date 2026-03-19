@@ -7,11 +7,11 @@ temp/
 local/
 build/
 profiles/
-native
+# native
 #//////////////////////////
 # NPM
 #//////////////////////////
-node_modules/
+# node_modules/
 
 #//////////////////////////
 # VSCode

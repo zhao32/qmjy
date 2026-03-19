@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('adset-gm-ad-adatper-6.8.4.0.1.aar'))

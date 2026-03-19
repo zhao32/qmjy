@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
+    namespace 'com.github.chrisbanes.photoview'
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:1.7.1"
+}

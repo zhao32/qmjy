@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('adset-sg-adatper-4.23.0.1.aar'))

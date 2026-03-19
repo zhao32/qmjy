@@ -1,0 +1,45 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+}
+
+android {
+    namespace 'com.umeng.sdk'
+    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+}
+
+dependencies {
+    implementation(fileTree(dir: 'libs', include: ['*.jar']))
+    implementation(project(':umengAbtest'))
+    implementation(project(':umengAsms'))
+    implementation(project(':umengCommon'))
+    implementation(project(':umengLink'))
+    implementation(project(':umengUyumao'))
+    implementation(project(':umengSina'))
+
+    implementation('com.tencent.mm.opensdk:wechat-sdk-android:6.8.34')
+    implementation('com.alibaba.fastjson2:fastjson2:2.0.58.android8')
+    implementation('com.github.bumptech.glide:glide:4.16.0')
+
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+}

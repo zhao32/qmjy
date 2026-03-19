@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+android {
+    namespace 'com.chrishui.easypay'
+    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+    }
+    lintOptions {
+        abortOnError false
+    }
+    // JavaVersion
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+}

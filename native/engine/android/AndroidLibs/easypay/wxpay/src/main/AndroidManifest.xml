@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.chrishui.wxpay">
+
+    <application>
+        <activity
+            android:name="com.chrishui.wxpay.WXPayActivity"
+            android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale|screenLayout|keyboardHidden"
+            android:exported="true"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            tools:targetApi="honeycomb" />
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.chrishui.wxpay.WXPayActivity" />
+    </application>
+
+</manifest>

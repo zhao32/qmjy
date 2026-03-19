@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('gamesdk-6040207-20250402.aar'))
