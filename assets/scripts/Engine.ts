@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec3, resources, JsonAsset, Prefab, instantiate, Label, math, UITransform, EPhysics2DDrawFlags, PhysicsSystem2D, BoxCollider2D, Intersection2D, Mask, Canvas, AudioSource, AudioClip, UIOpacity, tween, Tween, Animation, Enum, Vec2, CCBoolean, ParticleSystem2D } from 'cc';
+import { _decorator, Component, Node, Vec3, resources, JsonAsset, Prefab, instantiate, Label, math, UITransform, EPhysics2DDrawFlags, PhysicsSystem2D, BoxCollider2D, Intersection2D, Mask, Canvas, AudioSource, AudioClip, UIOpacity, tween, Tween, Animation, Enum, Vec2, CCBoolean, ParticleSystem2D, Toggle } from 'cc';
 import { Arrow } from './Arrow';
 import { Utils } from './CocosUtils';
 import { Circle } from './Circle';
@@ -12,7 +12,10 @@ import { SwitchType } from './jsb/JSB';
 import { GlobalConfig } from './CocosGlobalConfig';
 import { SqlUtil } from './SqlUtil';
 import { ObstacleFish } from './ObstacleFish';
+import { UIProtrol } from './UIProtrol';
 const { ccclass, property } = _decorator;
+
+export const isNet = false;
 
 @ccclass('Engine')
 export class Engine extends Component {
@@ -92,6 +95,16 @@ export class Engine extends Component {
     @property(Node)
     cblNode: Node;
 
+    @property(Node)
+    bottomNode: Node;
+
+    @property(Node)
+    protrolNode: Node;
+
+    @property(Toggle)
+    toggle: Toggle;
+
+
     canvasUt: UITransform;
 
     static instance: Engine;
@@ -119,7 +132,9 @@ export class Engine extends Component {
         this.canvasUt = this.canvas.getComponent(UITransform);
         this.jsb = new JsbManager();
         this.jsb.init(this.platformType);
-
+        this.protrolNode.active = false;
+        this.toggle.isChecked = false;
+        this.bottomNode.active = isNet == false;
     }
 
     start() {
@@ -157,6 +172,14 @@ export class Engine extends Component {
 
     hideCbl() {
         this.cblNode.active = false;
+    }
+
+    showProtrol1() {
+        this.protrolNode.getComponent(UIProtrol).init("用户协议", "隐私政策");
+    }
+
+    showProtrol2() {
+        this.protrolNode.getComponent(UIProtrol).init("隐私政策", "隐私政策");
     }
 
     goCbl() {
@@ -1719,6 +1742,13 @@ export class Engine extends Component {
     }
 
     startLevel() {
+        if (isNet == false) {
+            if (this.toggle.isChecked == false) {
+                alert("请阅读并同意《用户协议》与《隐私政策》");
+                return;
+            }
+        }
+
         this.onStartLevel(GlobalConfig.DB.level);
     }
 
