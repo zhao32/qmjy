@@ -17997,7 +17997,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 92.02734375,
+      "width": 500,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -18029,7 +18029,7 @@
       "b": 255,
       "a": 255
     },
-    "_maxWidth": 0,
+    "_maxWidth": 500,
     "_fontFamily": "Arial",
     "_font": null,
     "_isSystemFontUsed": true,
