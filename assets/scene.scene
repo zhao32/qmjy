@@ -8500,9 +8500,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
+      "r": 0,
       "g": 255,
-      "b": 255,
+      "b": 61,
       "a": 255
     },
     "_string": "《用户协议》",
@@ -8831,9 +8831,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
+      "r": 0,
       "g": 255,
-      "b": 255,
+      "b": 61,
       "a": 255
     },
     "_string": "《隐私政策》",

@@ -372,6 +372,7 @@ export class Arrow extends Component {
             if (Engine.instance.curLevel == 2) {
                 //查看当前是否需要提示引导
                 let isguide = localStorage.getItem('guide2');
+                isguide = "true"
                 if (isguide == null || isguide == '') {
 
                     // let arrow = Engine.instance.dir.getChildByName("arrow_34");
@@ -396,7 +397,7 @@ export class Arrow extends Component {
                         steps.push(
                             {
                                 path: 'btnTip',
-                                text: '找不出可移动的小狗时 /n 可以试试使用提示',
+                                text: '找不出可移动的河马时 /n 可以试试使用提示',
                                 root: Engine.instance.uigame,
                                 initFunc() {
                                     let btn = Engine.instance.uigame.getChildByName("btnTip");
@@ -410,7 +411,7 @@ export class Arrow extends Component {
                             {
                                 pos: Engine.instance.board.children[20].getWorldPosition(),
                                 radius: 200,
-                                text: "提示时，可以直接消除一个小狗！",
+                                text: "提示时，可以直接消除一个河马！",
                                 path: '',
 
                                 initFunc: (node: Node) => {
@@ -467,7 +468,7 @@ export class Arrow extends Component {
                             {
                                 pos: Engine.instance.board.children[16].getWorldPosition(),
                                 radius: 200,
-                                text: "提示时，可以直接消除一个小狗！",
+                                text: "提示时，可以直接消除一个河马！",
                                 path: '',
                                 initFunc: (node: Node) => {
                                     // let a = Engine.instance.dir.getChildByName("arrow_13");
@@ -521,7 +522,7 @@ export class Arrow extends Component {
                             {
                                 pos: grid.getWorldPosition(),
                                 radius: 200,
-                                text: "提示时，可以直接消除一个小狗！",
+                                text: "提示时，可以直接消除一个河马！",
                                 path: '',
                                 initFunc: (node: Node) => {
                                     // let a = Engine.instance.dir.getChildByName("arrow_13");
@@ -576,7 +577,7 @@ export class Arrow extends Component {
                             {
                                 pos: grid.getWorldPosition(),
                                 radius: 200,
-                                text: "提示时，可以直接消除一个小狗！",
+                                text: "提示时，可以直接消除一个河马！",
                                 path: '',
                                 initFunc: (node: Node) => {
                                     // let a = Engine.instance.dir.getChildByName("arrow_13");
@@ -631,7 +632,7 @@ export class Arrow extends Component {
                             {
                                 pos: grid9.getWorldPosition(),
                                 radius: 100,
-                                text: "提示时，可以直接消除一个小狗！",
+                                text: "提示时，可以直接消除一个河马！",
                                 path: '',
                                 initFunc: (node: Node) => {
                                     // //手指的动作
