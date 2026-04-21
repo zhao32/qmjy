@@ -1,0 +1,95 @@
+include ':libcocos', ':libservice', ':app'
+project(':libcocos').projectDir = new File(COCOS_ENGINE_PATH, 'cocos/platform/android/libcocos2dx')
+
+include ':jieyadahema'
+project(':jieyadahema').projectDir = new File(NATIVE_DIR, 'app')
+rootProject.name = "解压大河马"
+
+include ':ImagePicker', ':PhotoView'
+project(':ImagePicker').projectDir = new File(NATIVE_LIB, 'ImagePickerLib')
+project(':PhotoView').projectDir = new File(NATIVE_LIB, 'photoview')
+
+include ':aarAlipay', ':aarOkgo'
+project(':aarAlipay').projectDir = new File(NATIVE_LIB, 'aar/alipay')
+project(':aarOkgo').projectDir = new File(NATIVE_LIB, 'aar/okgo')
+
+include ':aarCsj', ':aarCsjGdt', ':aarCsjKs', ':aarCsjBaidu', ':aarCsjSigmob'
+project(':aarCsj').projectDir = new File(NATIVE_LIB, 'aar/ads/csj/csj')
+project(':aarCsjGdt').projectDir = new File(NATIVE_LIB, 'aar/ads/csj/adapter/gdt')
+project(':aarCsjKs').projectDir = new File(NATIVE_LIB, 'aar/ads/csj/adapter/ks')
+project(':aarCsjBaidu').projectDir = new File(NATIVE_LIB, 'aar/ads/csj/adapter/baidu')
+project(':aarCsjSigmob').projectDir = new File(NATIVE_LIB, 'aar/ads/csj/adapter/sigmob')
+
+include ':aarGdt', ':aarKs', ':aarBaidu', ':aarSigmob', ':aarSigmobCommon'
+project(':aarGdt').projectDir = new File(NATIVE_LIB, 'aar/ads/gdt')
+project(':aarKs').projectDir = new File(NATIVE_LIB, 'aar/ads/ks')
+project(':aarBaidu').projectDir = new File(NATIVE_LIB, 'aar/ads/baidu')
+project(':aarSigmob').projectDir = new File(NATIVE_LIB, 'aar/ads/sigmob/windAd')
+project(':aarSigmobCommon').projectDir = new File(NATIVE_LIB, 'aar/ads/sigmob/windAdCommon')
+
+include ':aarIqy', ':aarIqyQiLin'
+project(':aarIqy').projectDir = new File(NATIVE_LIB, 'aar/ads/iqy/iqy')
+project(':aarIqyQiLin').projectDir = new File(NATIVE_LIB, 'aar/ads/iqy/qilin')
+
+include ':aarSigmobMill', ':aarSigmobMillBaidu', ':aarSigmobMillCsj', ':aarSigmobMillGromore', ':aarSigmobMillGdt', ':aarSigmobMillKs', ':aarSigmobMillXbid'
+project(':aarSigmobMill').projectDir = new File(NATIVE_LIB, 'aar/ads/sigmob/windMill')
+project(':aarSigmobMillBaidu').projectDir = new File(NATIVE_LIB, 'aar/ads/sigmob/windMillAdapter/baidu')
+project(':aarSigmobMillCsj').projectDir = new File(NATIVE_LIB, 'aar/ads/sigmob/windMillAdapter/csj')
+project(':aarSigmobMillGromore').projectDir = new File(NATIVE_LIB, 'aar/ads/sigmob/windMillAdapter/gromore')
+project(':aarSigmobMillGdt').projectDir = new File(NATIVE_LIB, 'aar/ads/sigmob/windMillAdapter/gdt')
+project(':aarSigmobMillKs').projectDir = new File(NATIVE_LIB, 'aar/ads/sigmob/windMillAdapter/ks')
+project(':aarSigmobMillXbid').projectDir = new File(NATIVE_LIB, 'aar/ads/sigmob/windMillAdapter/xbid')
+
+include ':aarAdSet', ':aarZhangYu', ':aarHaiLiang', ':aarBzf'
+project(':aarAdSet').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adn/openset')
+project(':aarZhangYu').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adn/zhangyu')
+project(':aarHaiLiang').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adn/hailiang')
+project(':aarBzf').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adn/bzf')
+include ':aarAdSetGdt', ':aarAdSetKs', ':aarAdSetBaidu', ':aarAdSetSigmob', ':aarAdSetTanx', ':aarAdSetZhangYu'
+include ':aarAdSetHaiLiang', ':aarAdSetGm', ':aarAdSetBz'
+project(':aarAdSetGdt').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adapter/gdt')
+project(':aarAdSetKs').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adapter/ks')
+project(':aarAdSetBaidu').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adapter/baidu')
+project(':aarAdSetSigmob').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adapter/sigmob')
+project(':aarAdSetTanx').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adapter/tanx')
+project(':aarAdSetZhangYu').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adapter/zhangyu')
+project(':aarAdSetHaiLiang').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adapter/hailiang')
+project(':aarAdSetGm').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adapter/gm')
+project(':aarAdSetBz').projectDir = new File(NATIVE_LIB, 'aar/ads/adset/adapter/bz')
+
+include ':aarHykbCommon', ':aarHykbAnti', ':aarHykbLogin', ':aarHykbSingle'
+project(':aarHykbCommon').projectDir = new File(NATIVE_LIB, 'aar/hykb/common')
+project(':aarHykbAnti').projectDir = new File(NATIVE_LIB, 'aar/hykb/anti')
+project(':aarHykbLogin').projectDir = new File(NATIVE_LIB, 'aar/hykb/login')
+project(':aarHykbSingle').projectDir = new File(NATIVE_LIB, 'aar/hykb/single')
+
+include ':aarYSdk', ':aarYSdkShell'
+project(':aarYSdk').projectDir = new File(NATIVE_LIB, 'aar/ysdk/ysdk')
+project(':aarYSdkShell').projectDir = new File(NATIVE_LIB, 'aar/ysdk/shell')
+
+include ':aarOppoGame', ':aarOppoGameCommon'
+project(':aarOppoGame').projectDir = new File(NATIVE_LIB, 'aar/oppo/game')
+project(':aarOppoGameCommon').projectDir = new File(NATIVE_LIB, 'aar/oppo/common')
+
+include ':aarAsrRealtime'
+project(':aarAsrRealtime').projectDir = new File(NATIVE_LIB, 'aar/asr/realtime')
+
+include ':easypay:basepay', ':easypay:alipay', ':easypay:wxpay'
+project(':easypay:basepay').projectDir = new File(NATIVE_LIB, 'easypay/basepay')
+project(':easypay:alipay').projectDir = new File(NATIVE_LIB, 'easypay/alipay')
+project(':easypay:wxpay').projectDir = new File(NATIVE_LIB, 'easypay/wxpay')
+
+include ':umeng', ':umengAbtest', ':umengAsms', ':umengCommon', ':umengLink', ':umengUyumao', ':umengSina'
+project(':umeng').projectDir = new File(NATIVE_LIB, 'umeng')
+project(':umengAbtest').projectDir = new File(NATIVE_LIB, 'umeng/aar/abtest')
+project(':umengAsms').projectDir = new File(NATIVE_LIB, 'umeng/aar/asms')
+project(':umengCommon').projectDir = new File(NATIVE_LIB, 'umeng/aar/common')
+project(':umengLink').projectDir = new File(NATIVE_LIB, 'umeng/aar/link')
+project(':umengUyumao').projectDir = new File(NATIVE_LIB, 'umeng/aar/uyumao')
+project(':umengSina').projectDir = new File(NATIVE_LIB, 'umeng/aar/sina')
+
+include ':snackbar'
+project(':snackbar').projectDir = new File(NATIVE_LIB, 'snackbar')
+
+include ':EasyProtector'
+project(':EasyProtector').projectDir = new File(NATIVE_LIB, 'EasyProtector')

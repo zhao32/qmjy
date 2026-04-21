@@ -1,0 +1,10 @@
+.gradle/
+.idea/
+.kotlin/
+build/
+res/
+
+cfg.cmake
+gradlew
+gradlew.bat
+local.properties

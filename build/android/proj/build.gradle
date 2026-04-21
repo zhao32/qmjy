@@ -1,0 +1,42 @@
+buildscript {
+    ext {
+        agp_version = '8.6.0'
+    }
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://artifact.bytedance.com/repository/pangle' }
+        maven { url 'https://artifact.bytedance.com/repository/Volcengine' }
+        maven { url 'https://mvn.4399doc.com/repository/maven-releases' }
+        maven { url 'https://developer.huawei.com/repo' }
+        maven { url 'https://developer.hihonor.com/repo' }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$agp_version"
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://artifact.bytedance.com/repository/pangle' }
+        maven { url 'https://artifact.bytedance.com/repository/Volcengine' }
+        maven { url 'https://mvn.4399doc.com/repository/maven-releases' }
+        maven { url 'https://developer.huawei.com/repo' }
+        maven { url 'https://developer.hihonor.com/repo' }
+    }
+    // 将构建文件统一输出到项目根目录下的 build 文件夹
+    setBuildDir(new File(rootDir, "build/${path.replaceAll(':', '/')}"))
+    // 全局排除依赖
+    configurations.configureEach {
+        exclude group: 'com.alibaba', module: 'fastjson'
+    }
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.buildDir
+}
