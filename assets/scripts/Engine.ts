@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec3, resources, JsonAsset, Prefab, instantiate, Label, math, UITransform, EPhysics2DDrawFlags, PhysicsSystem2D, BoxCollider2D, Intersection2D, Mask, Canvas, AudioSource, AudioClip, UIOpacity, tween, Tween, Animation, Enum, Vec2, CCBoolean, ParticleSystem2D, Toggle, sys } from 'cc';
+import { _decorator, Component, Node, Vec3, resources, JsonAsset, Prefab, instantiate, Label, math, UITransform, EPhysics2DDrawFlags, PhysicsSystem2D, BoxCollider2D, Intersection2D, Mask, Canvas, AudioSource, AudioClip, UIOpacity, tween, Tween, Animation, Enum, Vec2, CCBoolean, ParticleSystem2D, Toggle, sys, RichText } from 'cc';
 import { Arrow } from './Arrow';
 import { Utils } from './CocosUtils';
 import { Circle } from './Circle';
@@ -13,7 +13,10 @@ import { GlobalConfig } from './CocosGlobalConfig';
 import { SqlUtil } from './SqlUtil';
 import { ObstacleFish } from './ObstacleFish';
 import { UIProtrol } from './UIProtrol';
-import { yr } from './android/yr';
+import HttpUtils from '../login/scripts/HttpUtils';
+import HttpManager from '../login/scripts/HttpManager';
+import { loginView } from '../login/scripts/loginView';
+import { yr } from '../login/scripts/yr/yr';
 const { ccclass, property } = _decorator;
 
 export const isNet = false;
@@ -102,6 +105,16 @@ export class Engine extends Component {
     @property(Node)
     protrolNode: Node;
 
+    @property(Node)
+    loginNode: Node;
+
+    @property(Node)
+    helpNode: Node;
+
+    @property(RichText)
+    helpRich: RichText = null;
+
+
     @property(Toggle)
     toggle: Toggle;
 
@@ -128,6 +141,8 @@ export class Engine extends Component {
 
     frogCircles: Array<Circle> = []; // 存储青蛙的圆点的数组
     countDown: number = 0;
+
+    needLogin
     protected onLoad(): void {
         Engine.instance = this;
         this.canvasUt = this.canvas.getComponent(UITransform);
@@ -135,7 +150,61 @@ export class Engine extends Component {
         this.jsb.init(this.platformType);
         this.protrolNode.active = false;
         this.toggle.isChecked = false;
-        this.bottomNode.active = isNet == false;
+
+        // this.bottomNode.active = isNet == false;
+        this.loginNode.getComponent(loginView).setCallBack(() => {
+            this.loginNode.active = false;
+        })
+
+        if (sys.platform == sys.Platform.ANDROID) {
+            yr.inst.init();
+        }
+
+        let token = sys.localStorage.getItem("token_jydhm");
+        if (token) {
+            HttpUtils.token = token;
+            HttpManager.getAllAdInfo(1, (res) => {
+                if (res && res.code == 1) {
+                    this.needLogin = false;
+                    this.loginNode.active = false;
+                    HttpManager.postGS()
+                } else {
+                    // this.needLogin = true;
+                    this.loginNode.active = true;
+                }
+            })
+        } else {
+            // this.needLogin = true;
+            this.loginNode.active = true;
+        }
+        this.helpNode.active = false;
+    }
+
+
+    showHelpWnd() {
+        HttpManager.getHelp((res) => {
+            if (res && res.code == 1) {
+                // debugger
+                // res.data = "fsfsfsfsfsfsfsdfsd"
+                if (res.data) {
+                    this.helpRich.string = res.data;
+                    this.helpNode.active = true;
+                } else {
+                    if (sys.platform == sys.Platform.ANDROID) {
+                        yr.inst.showToast({ text: "暂无帮助信息" });
+                    } else {
+                        alert("暂无帮助信息");
+                    }
+                }
+            } else {
+                yr.inst.showToast({ text: "获取帮助信息失败" });
+            }
+        });
+
+    }
+
+    hideHelpWnd() {
+        this.helpNode.active = false;
     }
 
     start() {
@@ -1747,18 +1816,18 @@ export class Engine extends Component {
     }
 
     startLevel() {
-        if (isNet == false) {
-            if (this.toggle.isChecked == false) {
-                if (sys.platform == sys.Platform.ANDROID) {
-                    yr.inst.showToast({ text: "请阅读并同意《用户协议》与《隐私政策》" });
-                } else {
-                    alert("请阅读并同意《用户协议》与《隐私政策》");
-                }
-                return;
-            }
-        } else {
+        // if (isNet == false) {
+        //     if (this.toggle.isChecked == false) {
+        //         if (sys.platform == sys.Platform.ANDROID) {
+        //             yr.inst.showToast({ text: "请阅读并同意《用户协议》与《隐私政策》" });
+        //         } else {
+        //             alert("请阅读并同意《用户协议》与《隐私政策》");
+        //         }
+        //         return;
+        //     }
+        // } else {
 
-        }
+        // }
 
         this.onStartLevel(GlobalConfig.DB.level);
     }
@@ -1948,135 +2017,141 @@ export class Engine extends Component {
     }
 
     onCheckClick() {
+        // this.jsb.playRewardVideo("", null).then((code: SwitchType) => {
+        //     if (code == SwitchType.On) {
+        //         this.doAd();
+        //     }
+        // })
 
-        this.jsb.playRewardVideo("", null).then((code: SwitchType) => {
-            if (code == SwitchType.On) {
-                if (!this.isTip) {
-                    this.isTip = true;
-                    // let datas = [];
+        let self = this
+        HttpManager.createMultipleAd(() => { self.doAd() })
+    }
+
+    doAd() {
+        if (!this.isTip) {
+            this.isTip = true;
+            // let datas = [];
 
 
-                    //获取当前关卡引导索引表中 最靠前的箭头
-                    for (let i = 0; i < this.curGuideData.length; i++) {
-                        let guideData = this.curGuideData[i];
-                        if (guideData[2] == 'obs') {
-                            //属于障碍物
-                            let obsid = guideData[0];
-                            let obs = this.obsAry.find((o) => o.index == obsid);
-                            if (obs == null) {
-                                continue;
-                            }
-                            if (obs.isOver) {
-                                continue;
-                            }
-                            //let angle = guideData[1];
-                            resources.load('prefabs/' + guideData[3], Prefab, (err, fab) => {
-                                if (err) {
-                                    return;
-                                }
-                                let obsNode = instantiate(fab);
-                                obsNode.setPosition(obs.node.getPosition());
-                                this.dir.addChild(obsNode);
-                                obsNode.angle = guideData[1];
-                                //计算当前角度对应的方向
-                                let direction = Utils.getDirectionFromRotation(guideData[1]);
-                                let to = direction.normalize().multiplyScalar(300);
-                                tween(obsNode).to(1, {
-                                    position: to.add(obsNode.position)
-                                }).call(() => {
-                                    obsNode.position = obs.node.getPosition()
-                                }).union().repeatForever().start();
-                                obsNode.name = 'guideArrow';
-                            });
-                            this.showAdTipPlane(obs.node.getWorldPosition());
-                            break;
-                        } else {
-                            let arrowid = guideData[0];
-                            let circleid = guideData[1];
-                            let arrow = this.arrows.find((a) => a.circleId == arrowid);
-                            if (arrow == null) {
-                                continue;
-                            }
-
-                            if (arrow.isOver) {
-                                continue;
-                            }
-                            if (arrow) {
-                                let circle = this.circles.find((c) => c.index == circleid);
-
-                                let angle = Utils.calculateTouchAngle(circle.node.getWorldPosition(), arrow.node.getWorldPosition());
-
-                                let newArrow = this.createArrow(arrow.circleId, angle, arrow.width, false);
-                                //移除newArrow节点上所有点击事件
-
-                                newArrow.node.addComponent(UIOpacity).opacity = 255 * 0.5;
-                                newArrow.node.name = 'guideArrow';
-                                let pos = arrow.node.getPosition();
-
-                                newArrow.node.angle = angle;
-
-                                console.log(angle);
-                                //计算当前角度对应的方向
-                                let direction = Utils.getDirectionFromRotation(angle);
-                                let to = direction.normalize().multiplyScalar(300);
-                                tween(newArrow.node).to(1, {
-                                    position: to.add(newArrow.node.position)
-                                }).call(() => {
-                                    newArrow.node.position = pos;
-                                }).union().repeatForever().start();
-
-                                arrow.changeSpColor(2);
-
-                                this.showAdTipPlane(arrow.touSp.node.getWorldPosition());
-                                break;
-                            }
-                        }
+            //获取当前关卡引导索引表中 最靠前的箭头
+            for (let i = 0; i < this.curGuideData.length; i++) {
+                let guideData = this.curGuideData[i];
+                if (guideData[2] == 'obs') {
+                    //属于障碍物
+                    let obsid = guideData[0];
+                    let obs = this.obsAry.find((o) => o.index == obsid);
+                    if (obs == null) {
+                        continue;
                     }
-
-                    // this.btnTipLabel.string = '移除';
-                    this.btnTip.active = false;
-                    this.btnRemove.active = true;
+                    if (obs.isOver) {
+                        continue;
+                    }
+                    //let angle = guideData[1];
+                    resources.load('prefabs/' + guideData[3], Prefab, (err, fab) => {
+                        if (err) {
+                            return;
+                        }
+                        let obsNode = instantiate(fab);
+                        obsNode.setPosition(obs.node.getPosition());
+                        this.dir.addChild(obsNode);
+                        obsNode.angle = guideData[1];
+                        //计算当前角度对应的方向
+                        let direction = Utils.getDirectionFromRotation(guideData[1]);
+                        let to = direction.normalize().multiplyScalar(300);
+                        tween(obsNode).to(1, {
+                            position: to.add(obsNode.position)
+                        }).call(() => {
+                            obsNode.position = obs.node.getPosition()
+                        }).union().repeatForever().start();
+                        obsNode.name = 'guideArrow';
+                    });
+                    this.showAdTipPlane(obs.node.getWorldPosition());
+                    break;
                 } else {
-                    //移除当前的箭头
-                    //获取当前关卡引导索引表中 最靠前的箭头
-                    for (let i = 0; i < this.curGuideData.length; i++) {
-                        let guideData = this.curGuideData[i];
-                        if (guideData[2] == 'obs') {
-                            //属于障碍物
-                            let obsid = guideData[0];
-                            let obs = this.obsAry.find((o) => o.index == obsid);
-                            if (obs == null) {
-                                continue;
-                            }
-                            if (obs.isOver) {
-                                continue;
-                            }
-                            obs.node.angle = guideData[1];
-                            obs.move();
-                            break;
-                        } else {
-                            let arrowid = guideData[0];
-                            let circleid = guideData[1];
-                            let arrow = this.arrows.find((a) => a.circleId == arrowid);
-                            if (arrow == null) {
-                                continue;
-                            }
-                            if (arrow.isOver) {
-                                continue;
-                            }
-                            let circle = this.circles.find((c) => c.index == circleid);
-
-                            let angle = Utils.calculateTouchAngle(circle.node.getWorldPosition(), arrow.node.getWorldPosition());
-                            arrow.node.angle = angle;
-                            arrow.move(null);
-                            break;
-                        }
+                    let arrowid = guideData[0];
+                    let circleid = guideData[1];
+                    let arrow = this.arrows.find((a) => a.circleId == arrowid);
+                    if (arrow == null) {
+                        continue;
                     }
 
-                    this.clearArrowTip();
+                    if (arrow.isOver) {
+                        continue;
+                    }
+                    if (arrow) {
+                        let circle = this.circles.find((c) => c.index == circleid);
+
+                        let angle = Utils.calculateTouchAngle(circle.node.getWorldPosition(), arrow.node.getWorldPosition());
+
+                        let newArrow = this.createArrow(arrow.circleId, angle, arrow.width, false);
+                        //移除newArrow节点上所有点击事件
+
+                        newArrow.node.addComponent(UIOpacity).opacity = 255 * 0.5;
+                        newArrow.node.name = 'guideArrow';
+                        let pos = arrow.node.getPosition();
+
+                        newArrow.node.angle = angle;
+
+                        console.log(angle);
+                        //计算当前角度对应的方向
+                        let direction = Utils.getDirectionFromRotation(angle);
+                        let to = direction.normalize().multiplyScalar(300);
+                        tween(newArrow.node).to(1, {
+                            position: to.add(newArrow.node.position)
+                        }).call(() => {
+                            newArrow.node.position = pos;
+                        }).union().repeatForever().start();
+
+                        arrow.changeSpColor(2);
+
+                        this.showAdTipPlane(arrow.touSp.node.getWorldPosition());
+                        break;
+                    }
                 }
             }
-        })
+
+            // this.btnTipLabel.string = '移除';
+            this.btnTip.active = false;
+            this.btnRemove.active = true;
+        } else {
+            //移除当前的箭头
+            //获取当前关卡引导索引表中 最靠前的箭头
+            for (let i = 0; i < this.curGuideData.length; i++) {
+                let guideData = this.curGuideData[i];
+                if (guideData[2] == 'obs') {
+                    //属于障碍物
+                    let obsid = guideData[0];
+                    let obs = this.obsAry.find((o) => o.index == obsid);
+                    if (obs == null) {
+                        continue;
+                    }
+                    if (obs.isOver) {
+                        continue;
+                    }
+                    obs.node.angle = guideData[1];
+                    obs.move();
+                    break;
+                } else {
+                    let arrowid = guideData[0];
+                    let circleid = guideData[1];
+                    let arrow = this.arrows.find((a) => a.circleId == arrowid);
+                    if (arrow == null) {
+                        continue;
+                    }
+                    if (arrow.isOver) {
+                        continue;
+                    }
+                    let circle = this.circles.find((c) => c.index == circleid);
+
+                    let angle = Utils.calculateTouchAngle(circle.node.getWorldPosition(), arrow.node.getWorldPosition());
+                    arrow.node.angle = angle;
+                    arrow.move(null);
+                    break;
+                }
+            }
+
+            this.clearArrowTip();
+        }
     }
 
     showAdTipPlane(pos: Vec3) {

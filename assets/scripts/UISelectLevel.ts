@@ -1,6 +1,7 @@
 import { _decorator, Color, Component, instantiate, JsonAsset, Label, Node, Prefab, resources, Sprite } from 'cc';
 import { Engine } from './Engine';
 import { GlobalConfig } from './CocosGlobalConfig';
+import HttpManager from '../login/scripts/HttpManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('UISelectLevel')
@@ -12,6 +13,8 @@ export class UISelectLevel extends Component {
     content: Node;
 
     show() {
+        HttpManager.showInterstAdMulti()
+
         this.node.active = true;
         this.content.destroyAllChildren();
 

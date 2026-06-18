@@ -1,5 +1,6 @@
 import { _decorator, Component, Node, Toggle, UITransform } from 'cc';
 import { Engine } from './Engine';
+import HttpManager from '../login/scripts/HttpManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('UISetting')
@@ -24,6 +25,8 @@ export class UISetting extends Component {
     toggleShake: Toggle;
 
     show(isgame: boolean) {
+        HttpManager.showInterstAdMulti()
+
         // this.btnAgain.active = isgame;
         this.btnBack.active = isgame;
         this.btnRefresh.active = isgame;

@@ -2,6 +2,7 @@ import { _decorator, Component, EventTouch, Node, randomRangeInt, tween, UITrans
 import { UILotteryItem } from './UILotteryItem';
 import { Engine } from './Engine';
 import { SwitchType } from './jsb/JSB';
+import HttpManager from '../login/scripts/HttpManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('UILottery')
@@ -152,17 +153,31 @@ export class UILottery extends Component {
     }
 
     onAgainClick() {
-        Engine.instance.jsb.playRewardVideo('', {}).then((code: SwitchType) => {
-            if (code == SwitchType.On) {
-                this.btnAgain.active = false;
-                this.btnNext.active = false;
-                this.clickTip.active = true;
-                this.curState = 0;
-                this.startLottery(true);
-            }
-        })
+        // Engine.instance.jsb.playRewardVideo('', {}).then((code: SwitchType) => {
+        //     if (code == SwitchType.On) {
+        //         this.btnAgain.active = false;
+        //         this.btnNext.active = false;
+        //         this.clickTip.active = true;
+        //         this.curState = 0;
+        //         this.startLottery(true);
+        //     }
+        // })
+
+        let self = this
+        HttpManager.createMultipleAd(() => { self.doAd() })
     }
 
+    doAd() {
+        this.btnAgain.active = false;
+        this.btnNext.active = false;
+        this.clickTip.active = true;
+        this.curState = 0;
+        this.startLottery(true);
+    }
 }
+
+
+
+
 
 

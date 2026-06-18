@@ -18,12 +18,6 @@ export class yr {
     return this._inst;
   }
 
-  rewardedAdList: any = [];
-  interstitialAdList: any = [];
-  splashAdList: any = [];
-  feedAdList: any = [];
-  bannerAdList: any = [];
-
   public ads: any = {
     provider: 'csj', // 广告商
     appid: '5571516', // 广告应用 id
@@ -119,6 +113,14 @@ export class yr {
       event = 'rewardedVideoAd';
       if (data && this.getCallback(event)?.rewarded)
         this.getCallback(event).rewarded(data);
+
+      let event1 = 'rewardedMultipleAd'
+      if (data && this.getCallback(event1)?.rewarded)
+        this.getCallback(event1).rewarded(data);
+
+      let event2 = 'multipleAd'
+      if (data && this.getCallback(event2)?.rewarded)
+        this.getCallback(event2).rewarded(data);
     } else if (event == 'chooseMediaProgress') {
       event = 'chooseMedia';
       if (data && this.getCallback(event)?.onProgress)
@@ -135,12 +137,14 @@ export class yr {
     }
   }
 
+
   private sendToNative(event: string, data?: any) {
     this.setCallback(event, { success: data?.success, showAd: data?.showAd, onProgress: data?.onProgress, rewarded: data?.rewarded, fail: data?.fail });
 
     let obj: Object = { event: event, data: data };
     let req = JSON.stringify(obj);
-    console.log('------this.bridg:', this.bridge);
+    console.log('yr sendToNative', req);
+
     if (this.bridge == 'native') {
       native.bridge.sendToNative(req, '');
     }
@@ -153,9 +157,6 @@ export class yr {
         let methodName = 'sendToNative';
         let methodSignature = `(${typeString}${typeString})${typeVoid}`;
         native.reflection.callStaticMethod(className, methodName, methodSignature, req, '');
-
-        console.log('------yr sendToNative', req);
-
       } else if (this.isIos()) {
         let className = 'AppController';
         let methodName = 'sendToNative:andArg:';
