@@ -1,3 +1,5 @@
+import { BYTEDANCE } from "cc/env";
+
 export class Jsb {
     public isPlayMusic: boolean = true;
 
@@ -57,6 +59,76 @@ export class Jsb {
 
     }
 
+    public showInsertAd() {
+        if (!BYTEDANCE) return
+        // @ts-ignore
+        let interstitialAd = wx.createInterstitialAd({ adUnitId: "7lrfqpm4efaeem01k4" });
+        interstitialAd.onLoad(() => {
+            console.log("插屏 广告加载成功");
+        });
+        interstitialAd.onError(err => {
+            console.log(err);
+        });
+        interstitialAd.onClose(res => {
+            console.log("插屏 广告关闭");
+            tt.request({
+                url: "https://box.tv888.cn/index.php//api/Advertisement/addKdLog",
+                data: {
+                    type: "2",
+                    game_id: "1",
+
+                },
+                header: {
+                    "content-type": "application/json",
+                    cookie: "ba-user-token" + localStorage.getItem("JYDHMTOKEN")
+
+                },
+                method: "POST",
+                dataType: "JSON", // 指定返回数据的类型为 json
+                responseType: "text",
+                success(res) {
+                    console.log("调用成功", res.data)
+                },
+                fail(res) {
+                    console.log("调用失败", res.errMsg)
+                },
+            })
+        });
+
+
+
+        interstitialAd.show().catch(err => {
+            console.error(err);
+        })
+
+    }
+
+    _bannerAd: any = null;
+    public showBannerAd() {
+        if (!BYTEDANCE) return
+        if (!this._bannerAd) {
+            // @ts-ignore
+            this._bannerAd = wx.createBannerAd({
+                adUnitId: "fcfkgegbie51070nco",
+                style: {
+                    left: 0,
+                    top: 0,
+                    width: 320
+                }
+            });
+        }
+
+
+        this._bannerAd.show();
+        // this._bannerAd.style.width = 400;
+    }
+
+    public hideBannerAd() {
+        if (!BYTEDANCE) return
+        this._bannerAd && this._bannerAd.hide();
+    }
+
+
     public clearBanner() {
 
     }
@@ -90,6 +162,29 @@ export class Jsb {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(1);
+
+                tt.request({
+                    url: "https://box.tv888.cn/index.php//api/Advertisement/addKdLog",
+                    data: {
+                        type: "1",
+                        game_id: "1",
+
+                    },
+                    header: {
+                        "content-type": "application/json",
+                        cookie: "ba-user-token" + localStorage.getItem("JYDHMTOKEN")
+
+                    },
+                    method: "POST",
+                    dataType: "JSON", // 指定返回数据的类型为 json
+                    responseType: "text",
+                    success(res) {
+                        console.log("调用成功", res.data)
+                    },
+                    fail(res) {
+                        console.log("调用失败", res.errMsg)
+                    },
+                })
             }, 100);
         })
     }
@@ -100,7 +195,7 @@ export class Jsb {
 
     public login(params: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            
+
             resolve(1);
         });
     }
@@ -108,7 +203,7 @@ export class Jsb {
     public showToast(msg: string) {
 
     }
-   
+
     //#region  开关区域
     /**
      * 是否可以显示朋友
@@ -153,7 +248,7 @@ export class Jsb {
      * 
      * @returns 
      */
-    isCollect(){
+    isCollect() {
         return true;
     }
     //#endregion    

@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec3, resources, JsonAsset, Prefab, instantiate, Label, math, UITransform, EPhysics2DDrawFlags, PhysicsSystem2D, BoxCollider2D, Intersection2D, Mask, Canvas, AudioSource, AudioClip, UIOpacity, tween, Tween, Animation, Enum, Vec2, CCBoolean, ParticleSystem2D } from 'cc';
+import { _decorator, Component, Node, Vec3, resources, JsonAsset, Prefab, instantiate, Label, math, UITransform, EPhysics2DDrawFlags, PhysicsSystem2D, BoxCollider2D, Intersection2D, Mask, Canvas, AudioSource, AudioClip, UIOpacity, tween, Tween, Animation, Enum, Vec2, CCBoolean, ParticleSystem2D, sys } from 'cc';
 import { Arrow } from './Arrow';
 import { Utils } from './CocosUtils';
 import { Circle } from './Circle';
@@ -148,6 +148,59 @@ export class Engine extends Component {
 
         this.cblNode.active = false;
         this.refreshLevelLabel();
+
+
+
+        if (sys.platform == sys.Platform.BYTEDANCE_MINI_GAME) {
+            tt.login({
+                success(_res) {
+                    console.log("登录成功");
+                    // 调用 getUserInfo 前, 请确保登录成功
+                    // 获取用户信息
+                    tt.getUserInfo({
+                        // withCredentials: true,
+                        // withRealNameAuthenticationInfo: true,
+                        success(res) {
+                            console.log(`getUserInfo 调用成功`, res.userInfo, res.encryptedData, res.iv, res.signature);
+
+                            let nickname = res.userInfo.nickName
+                            let head = res.userInfo.avatarUrl
+
+                            tt.request({
+                                url: "https://box.tv888.cn/index.php//api/login/allLogin",
+                                data: {
+                                    type: "TikTokMini",
+                                    game_id: "1",
+                                    code: _res.code,
+                                    nickname: nickname,
+                                },
+                                header: {
+                                    "content-type": "application/json",
+                                },
+                                method: "POST",
+                                dataType: "JSON", // 指定返回数据的类型为 json
+                                responseType: "text",
+                                success(res) {
+                                    console.log("调用成功", res.data)
+                                    if (res.code == 1) {
+                                        localStorage.setItem("JYDHMTOKEN", res.data.data.userInfo.token)
+                                    } else {
+                                        console.log("https error:", res.msg)
+                                    }
+                                },
+                                fail(res) {
+                                    console.log("调用失败", res.errMsg)
+                                },
+                            })
+                        },
+                        fail(res) {
+                            console.log(`getUserInfo 调用失败`, res.errMsg);
+                        },
+                    });
+                },
+            });
+
+        }
 
     }
 

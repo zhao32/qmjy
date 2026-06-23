@@ -54,7 +54,7 @@ export class JsbManager {
     init(platform: PlatformType) {
         this.platform = platform;
         let jsb = new Jsb();
-        if (this.platform == PlatformType.WXMinGame) {
+        if (this.platform == PlatformType.TTMinGame) {
             jsb = new JsbWXMinniGame();
         }
 
