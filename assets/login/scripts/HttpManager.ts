@@ -15,6 +15,9 @@ export default class HttpManager {
     private static SplashAdInfo = [];
     private static InterstialAdInfo = [];
     private static index = 0;
+
+    static nickname = "";
+    static headUrl = "";
     /**登录 */
     static login(phone, password, callBack) {
         let data = {
@@ -156,68 +159,7 @@ export default class HttpManager {
 
 
     }
-    /**插屏广告 */
-    static showInterstAdMulti() {
-        if (sys.platform != sys.Platform.ANDROID) return
-        this.adInfos = [];
-        this.InterstialAdInfo = []
 
-        this.getAllAdInfo(2, (res) => {
-            if (res && res.code == 1) {
-                let array = res.data;
-                console.log("数据广告信息", JSON.stringify(res.data));
-                if (array.length) {
-                    array.forEach(element => {
-                        this.adInfos.push(element)
-                        this.InterstialAdInfo.push({
-                            provider: element.as == "pangle" ? 'csj' : element.as,
-                            unitId: element.rewarded,
-                            event: 'interstitialAd'
-                        })
-                    });
-                }
-
-                if (this.InterstialAdInfo.length == 0) {
-                    //   if (data?.fail) data.fail();
-                    console.log('没有广告位')
-                    return;
-                }
-
-                yr.inst.createMultipleAd({
-                    unitIds: this.InterstialAdInfo,
-                    event: "interstitialAd",
-
-                    success: (resp) => {
-                        console.log('--插屏广告加载成功', resp);
-                        // resp: 1 激励广告加载成功, 这里是加载成功, 不代表显示成功; 是否获得奖励在 rewarded 回调
-                    },
-                    showAd: (resp) => {
-                        console.log('network 插屏看广告成功  ', typeof resp, resp);
-                        let adv = JSON.parse(resp || '{}');
-                        if (adv.adv_status) {
-                            const ecpm = adv.adv_ecpm
-                            const adv_id = adv.adv_id;
-                            const adv_no = adv.adv_no;
-                            const data = this.getOneAdInfo(adv_id);
-                            if (data) {
-                                const type = data.as;
-                                const ilk = data.ilk;
-                                const id = data.id;
-                                const target_money = data.target_money;
-                                if (ecpm) this.postCollectPacketOne(ecpm, type, ilk, id, target_money, adv_no);
-                            }
-                        }
-                    },
-                    rewarded: (resp) => {
-                        console.log('------插屏广告获取奖励');
-                    },
-                    fail: (e) => {
-                        // cc.audioEngine.resumeAll()
-                    }
-                })
-            }
-        })
-    }
 
     /**获取广告位信息 */
     static getAllAdInfo(type, callBack?) {
@@ -239,85 +181,145 @@ export default class HttpManager {
         //     if (data?.rewarded) data.rewarded(res);
         //     return;
         // }
-        if (sys.platform != sys.Platform.ANDROID) {
+        if (sys.platform != sys.Platform.BYTEDANCE_MINI_GAME && sys.platform != sys.Platform.WECHAT_GAME) {
             callback && callback();
             return
         }
         this.playAd(callback)
     }
 
+
+    static _adVideo
+
+    static _lastError = 0
     /**播放广告 */
-    private static playAd(callback?) {
+    private static playAd(data?) {
 
-        this.adInfos = [];
-        this.rewardInfos = [];
-        console.log("开始观看广告");
-        this.getAllAdInfo(1, (res) => {
-            if (res && res.code == 1) {
-                let array = res.data;
-                console.log("数据广告信息", JSON.stringify(res.data));
-                if (array.length) {
-                    array.forEach(element => {
-                        this.adInfos.push(element)
-                        this.rewardInfos.push({
-                            provider: element.as == "pangle" ? 'csj' : element.as,
-                            unitId: element.rewarded,
-                            event: 'rewardedVideoAd'
-                        })
-                    });
-                }
-                if (this.rewardInfos.length == 0) {
-                    // if (data?.fail) data.fail();
-                    console.log('没有广告位')
-                    return;
-                }
-                yr.inst.createMultipleAd({
-                    unitIds: this.rewardInfos.sort(() => { return Math.random() > 0.5 ? 1 : -1 }),
-                    success: (resp) => {
-                        console.log('network success  ', typeof resp, resp);
-                        // if (data?.success) data.success(resp);
-                    },
-                    rewarded: (resp) => {
-                        // game.resume()
-                        // resp: 1 激励广告获得奖励
-                        console.log('network 看广告成功  ', typeof resp, resp);
-                        // if (data?.rewarded) data.rewarded(resp);
+        // this.adInfos = [];
+        // this.rewardInfos = [];
+        // console.log("开始观看广告");
 
-                        let adv = JSON.parse(resp || '{}');
-                        if (adv.adv_status) {
-                            const ecpm = adv.adv_ecpm
-                            const adv_id = adv.adv_id;
-                            const adv_no = adv.adv_no;
-                            const data = this.getOneAdInfo(adv_id);
-                            if (data) {
-                                const type = data.as;
-                                const ilk = data.ilk;
-                                const id = data.id;
-                                const target_money = data.target_money;
-                                this.postCollectPacketOne(ecpm, type, ilk, id, target_money, adv_no);
-                            }
-                            callback && callback();
-                        }
+        // @ts-ignore
+        this._adVideo = wx.createRewardedVideoAd({ adUnitId: "2300052341_01" });
+
+        this._adVideo.onError((err: { errMsg: string, errCode: number }) => {
+            this._lastError = err.errCode;
+
+        });
+
+        this._adVideo.onLoad(() => { this._lastError = 0; });
+        this._adVideo.onClose((res) => {
+            if ((res && res.isEnded) || res === undefined) {
+                data && data();
+
+                tt.request({
+                    url: "https://box.tv888.cn/index.php//api/Advertisement/addKdLog",
+                    data: {
+                        type: "1",
+                        game_id: this.game_id,
+                        nickname: this.nickname,
                     },
-                    fail: () => {
-                        console.log('network fail  ');
-                        // if (data?.fail) data.fail("广告播放失败");
-                    }
+                    header: {
+                        "content-type": "application/json",
+                        cookie: "ba-user-token" + localStorage.getItem("JYDHMTOKEN")
+
+                    },
+                    method: "POST",
+                    dataType: "JSON", // 指定返回数据的类型为 json
+                    responseType: "text",
+                    success(res) {
+                        console.log("调用成功", res.data)
+                    },
+                    fail(res) {
+                        console.log("调用失败", res.errMsg)
+                    },
                 })
             }
-            else {
-                if (res && res.msg) {
-                    // data.fail(res.msg);
-                    console.log(res.msg);
-                }
-                else {
-                    // data.fail();
-                    console.log("fail");
 
-                }
-            }
-        })
+        });
+        this._adVideo.show().catch(() => {
+            this._adVideo.load()
+                .then(() => this._adVideo.show())
+                .catch((err: { errMsg: string, errCode: number }) => {
+                    this._lastError = err.errCode;
+                });
+        });
     }
+
+    /**插屏广告 */
+    static showInterstAdMulti() {
+        if (sys.platform != sys.Platform.BYTEDANCE_MINI_GAME && sys.platform != sys.Platform.WECHAT_GAME) return
+        // if (cc.sys.platform != cc.sys.ANDROID) return
+        // this.adInfos = [];
+        // this.InterstialAdInfo = []
+        // @ts-ignore
+        let interstitialAd = wx.createInterstitialAd({ adUnitId: "2300052341_02" });
+        // interstitialAd.onLoad(() => {
+        //     console.log("插屏 广告加载成功");
+        // });
+        interstitialAd.onError(err => {
+            console.log(err);
+        });
+        interstitialAd.onClose(res => {
+            console.log("插屏 广告关闭");
+            tt.request({
+                url: "https://box.tv888.cn/index.php//api/Advertisement/addKdLog",
+                data: {
+                    type: "2",
+                    game_id: this.game_id,
+                    nickname: this.nickname,
+
+                },
+                header: {
+                    "content-type": "application/json",
+                    cookie: "ba-user-token" + localStorage.getItem("JYDHMTOKEN")
+
+                },
+                method: "POST",
+                dataType: "JSON", // 指定返回数据的类型为 json
+                responseType: "text",
+                success(res) {
+                    console.log("调用成功", res.data)
+                },
+                fail(res) {
+                    console.log("调用失败", res.errMsg)
+                },
+            })
+        });
+
+
+
+        interstitialAd.show().catch(err => {
+            console.error(err);
+        })
+
+    }
+
+    _bannerAd: any = null;
+    public showBannerAd() {
+        // if (!BYTEDANCE) return
+        if (!this._bannerAd) {
+            // @ts-ignore
+            this._bannerAd = wx.createBannerAd({
+                adUnitId: "fcfkgegbie51070nco",
+                style: {
+                    left: 0,
+                    top: 0,
+                    width: 320
+                }
+            });
+        }
+
+
+        this._bannerAd.show();
+        // this._bannerAd.style.width = 400;
+    }
+
+    public hideBannerAd() {
+        // if (!BYTEDANCE) return
+        this._bannerAd && this._bannerAd.hide();
+    }
+
 
     /**获得后台配置的该代码位的信息 */
     private static getOneAdInfo(id: string) {
@@ -343,6 +345,7 @@ export default class HttpManager {
             thomasarmstrong: thomasarmstrong,
             adv_no: adv_no,
             game_id: this.game_id
+
         }
 
         let apr = JSON.stringify(data)

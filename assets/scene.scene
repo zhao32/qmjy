@@ -20529,7 +20529,7 @@
         "__id__": 583
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 586
@@ -21624,9 +21624,6 @@
     },
     "protrolNode": {
       "__id__": 520
-    },
-    "loginNode": {
-      "__id__": 159
     },
     "helpNode": {
       "__id__": 269

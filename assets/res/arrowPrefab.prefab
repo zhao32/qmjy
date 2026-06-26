@@ -2208,7 +2208,9 @@
     "touSp": {
       "__id__": 20
     },
-    "bodySp": null,
+    "bodySp": {
+      "__id__": 28
+    },
     "eyeFrames": [
       {
         "__uuid__": "32366c24-88fc-42a0-8c20-f312f229d03c@f40ce",
