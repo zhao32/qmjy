@@ -2212,22 +2212,10 @@
       "__id__": 28
     },
     "eyeFrames": [
-      {
-        "__uuid__": "32366c24-88fc-42a0-8c20-f312f229d03c@f40ce",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "32366c24-88fc-42a0-8c20-f312f229d03c@0a00f",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "32366c24-88fc-42a0-8c20-f312f229d03c@01755",
-        "__expectedType__": "cc.SpriteFrame"
-      },
-      {
-        "__uuid__": "32366c24-88fc-42a0-8c20-f312f229d03c@feb45",
-        "__expectedType__": "cc.SpriteFrame"
-      }
+      null,
+      null,
+      null,
+      null
     ],
     "moveSpeed": 720,
     "_id": ""

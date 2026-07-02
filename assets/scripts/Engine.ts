@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec3, resources, JsonAsset, Prefab, instantiate, Label, math, UITransform, EPhysics2DDrawFlags, PhysicsSystem2D, BoxCollider2D, Intersection2D, Mask, Canvas, AudioSource, AudioClip, UIOpacity, tween, Tween, Animation, Enum, Vec2, CCBoolean, ParticleSystem2D, Toggle, sys, RichText } from 'cc';
+import { _decorator, Component, Node, Vec3, resources, JsonAsset, Prefab, instantiate, Label, math, UITransform, EPhysics2DDrawFlags, PhysicsSystem2D, BoxCollider2D, Intersection2D, Mask, Canvas, AudioSource, AudioClip, UIOpacity, tween, Tween, Animation, Enum, Vec2, CCBoolean, ParticleSystem2D, Toggle, sys, RichText, ImageAsset, assetManager, SpriteFrame, Sprite } from 'cc';
 import { Arrow } from './Arrow';
 import { Utils } from './CocosUtils';
 import { Circle } from './Circle';
@@ -17,6 +17,7 @@ import HttpUtils from '../login/scripts/HttpUtils';
 import HttpManager from '../login/scripts/HttpManager';
 import { loginView } from '../login/scripts/loginView';
 import { yr } from '../login/scripts/yr/yr';
+import { BYTEDANCE, WECHAT } from 'cc/env';
 const { ccclass, property } = _decorator;
 
 export const isNet = false;
@@ -118,6 +119,14 @@ export class Engine extends Component {
     @property(Toggle)
     toggle: Toggle;
 
+    @property(Node)
+    headNode: Node;
+
+    @property(Sprite)
+    headSp: Sprite;
+
+    @property(Label)
+    nameLab: Label;
 
     canvasUt: UITransform;
 
@@ -152,32 +161,132 @@ export class Engine extends Component {
         this.toggle.isChecked = false;
 
         // this.bottomNode.active = isNet == false;
-        this.loginNode.getComponent(loginView).setCallBack(() => {
-            this.loginNode.active = false;
-        })
+        // this.loginNode.getComponent(loginView).setCallBack(() => {
+        //     this.loginNode.active = false;
+        // })
 
         if (sys.platform == sys.Platform.ANDROID) {
             yr.inst.init();
         }
+        this.needLogin = false;
 
-        let token = sys.localStorage.getItem("token_jydhm");
-        if (token) {
-            HttpUtils.token = token;
-            HttpManager.getAllAdInfo(1, (res) => {
-                if (res && res.code == 1) {
-                    this.needLogin = false;
-                    this.loginNode.active = false;
-                    HttpManager.postGS()
-                } else {
-                    // this.needLogin = true;
-                    this.loginNode.active = true;
-                }
-            })
-        } else {
-            // this.needLogin = true;
-            this.loginNode.active = true;
-        }
+        // let token = sys.localStorage.getItem("token_jydhm");
+        // if (token) {
+        //     HttpUtils.token = token;
+        //     HttpManager.getAllAdInfo(1, (res) => {
+        //         if (res && res.code == 1) {
+        //             this.needLogin = false;
+        //             this.loginNode.active = false;
+        //             HttpManager.postGS()
+        //         } else {
+        //             // this.needLogin = true;
+        //             this.loginNode.active = true;
+        //         }
+        //     })
+        // } else {
+        //     // this.needLogin = true;
+        //     this.loginNode.active = true;
+        // }
         this.helpNode.active = false;
+        this.headNode.active = false;
+        let self = this;
+
+        if (BYTEDANCE || WECHAT) {
+            tt.login({
+                success(_res) {
+                    console.log("登录成功");
+
+                    tt.authorize({
+                        scope: "scope.userInfo",
+                        success: () => {
+                            console.log("授权获取用户信息成功");
+
+                            // 调用 getUserInfo 前, 请确保登录成功
+                            // 获取用户信息
+                            tt.getUserInfo({
+                                // withCredentials: true,
+                                // withRealNameAuthenticationInfo: true,
+                                success(res) {
+                                    console.log(`getUserInfo 调用成功`, res.userInfo, res.encryptedData, res.iv, res.signature);
+
+                                    let nickname = res.userInfo.nickName
+                                    let head = res.userInfo.avatarUrl
+                                    HttpManager.nickname = nickname
+                                    HttpManager.headUrl = head
+
+                                    self.initHead()
+                                    // tt.request({
+                                    //     url: "https://box.tv888.cn/index.php//api/login/allLogin",
+                                    //     data: {
+                                    //         type: "TikTokMini",
+                                    //         game_id: "3",
+                                    //         code: _res.code,
+                                    //         nickname: nickname,
+                                    //     },
+                                    //     header: {
+                                    //         "content-type": "application/json",
+                                    //     },
+                                    //     method: "POST",
+                                    //     dataType: "JSON", // 指定返回数据的类型为 json
+                                    //     responseType: "text",
+                                    //     success(res) {
+                                    //         console.log("调用成功", res.data)
+                                    //         if (res.code == 1) {
+                                    //             localStorage.setItem("DWWTOKEN", res.data.data.userInfo.token)
+                                    //         } else {
+                                    //             console.log("https error:", res.msg)
+                                    //         }
+                                    //     },
+                                    //     fail(res) {
+                                    //         console.log("调用失败", res.errMsg)
+                                    //     },
+                                    // })
+                                },
+                                fail(res) {
+                                    console.log(`getUserInfo 调用失败`, res.errMsg);
+                                },
+                            });
+                        },
+                        fail: (error) => {
+                            console.log("授权获取用户信息失败: " + JSON.stringify(error));
+                        },
+                        complete: () => {
+                            console.log("授权获取用户信息完成");
+                        }
+                    });
+
+                },
+            });
+
+        }
+    }
+
+    initHead() {
+        console.log("HttpManager:nickname:", HttpManager.nickname)
+        console.log("HttpManager:avatarUrl:", HttpManager.headUrl)
+
+        if (HttpManager.nickname) {
+            this.headNode.active = true
+            this.nameLab.string = HttpManager.nickname
+            if (HttpManager.headUrl) {
+                // assetManager.loadRemote(HttpManager.headUrl, { ext: '.png' }, (err, texture: Texture2D) => {
+                //     if (!err) {
+                //         const spriteFrame = new SpriteFrame();
+                //         spriteFrame.texture = texture;
+                //         this.headSp.spriteFrame = spriteFrame
+                //     }
+                // });
+
+                assetManager.loadRemote<ImageAsset>(HttpManager.headUrl, (err, imageAsset) => {
+                    if (err) return;
+                    // 直接通过 ImageAsset 创建 SpriteFrame
+                    const spriteFrame = SpriteFrame.createWithImage(imageAsset);
+                    this.headSp.spriteFrame = spriteFrame;
+                });
+            }
+        } else {
+            this.headNode.active = false
+        }
     }
 
 
