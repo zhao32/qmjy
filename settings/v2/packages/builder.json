@@ -61,7 +61,7 @@
               },
               "wechatgame": {
                 "isRemote": false,
-                "compressionType": "merge_dep"
+                "compressionType": "subpackage"
               },
               "xiaomi-quick-game": {
                 "isRemote": false,

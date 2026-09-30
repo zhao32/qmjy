@@ -87,6 +87,7 @@ export class JsbManager {
     }
 
     share() {
+        return
         return new Promise((resolve, reject) => {
             // Engine.gui.show(ViewID.UIBlockInput);
             Engine.instance.showMask(true);
@@ -99,14 +100,17 @@ export class JsbManager {
     }
 
     completeLevel(level: number, maxLevel: number) {
+        return
         this.Jsb.completeLevel(level, maxLevel);
     }
 
     showRankView(key: string) {
+        return
         this.Jsb.showRankView(key);
     }
 
     playRewardVideo(adid: string, params: any) {
+        return
         return new Promise((resolve, reject) => {
             Engine.instance.showMask(true);
 

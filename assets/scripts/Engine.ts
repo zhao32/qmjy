@@ -5,7 +5,7 @@ import { Circle } from './Circle';
 import { UIWin } from './UIWin';
 import { UISetting } from './UISetting';
 import { UISelectLevel } from './UISelectLevel';
-import { GuideStep, UIGuide } from '../resources/guide/UIGuide';
+// import { GuideStep, UIGuide } from '../resources/guide/UIGuide';
 import { JsbManager, PlatformType } from './jsb/JSBManager';
 import { Obstacle } from './Obstacle';
 import { SwitchType } from './jsb/JSB';
@@ -165,9 +165,9 @@ export class Engine extends Component {
         //     this.loginNode.active = false;
         // })
 
-        if (sys.platform == sys.Platform.ANDROID) {
-            yr.inst.init();
-        }
+        // if (sys.platform == sys.Platform.ANDROID) {
+        //     yr.inst.init();
+        // }
         this.needLogin = false;
 
         // let token = sys.localStorage.getItem("token_jydhm");
@@ -329,7 +329,7 @@ export class Engine extends Component {
         this.adTipPlane.active = false;
         this.changeAdVisible(false);
         this.playMusic();
-        this.jsb.Jsb.initAd();
+        // this.jsb.Jsb.initAd();
 
         GlobalConfig.DB = {
             level: SqlUtil.get('curLevel', 1),
@@ -366,18 +366,18 @@ export class Engine extends Component {
     }
 
     goCbl() {
-        let that = this;
-        // @ts-ignore
-        tt.navigateToScene({
-            scene: "sidebar",
-            success: (res) => {
-                console.log("侧边栏打开成功");
-                that.hideCbl();
-            },
-            fail: (res) => {
-                console.log("侧边栏打开失败: ", res);
-            },
-        });
+        // let that = this;
+        // // @ts-ignore
+        // tt.navigateToScene({
+        //     scene: "sidebar",
+        //     success: (res) => {
+        //         console.log("侧边栏打开成功");
+        //         that.hideCbl();
+        //     },
+        //     fail: (res) => {
+        //         console.log("侧边栏打开失败: ", res);
+        //     },
+        // });
 
     }
 
@@ -456,87 +456,87 @@ export class Engine extends Component {
         }
 
 
-        if (GlobalConfig.DB.level == 1) {
-            let isguide = localStorage.getItem('guide1');
-            if (isguide != null && isguide != '') {
-                return;
-            }
-            let cellSize = this.cellSize; // 每个格子的大小为 100x100
+        // if (GlobalConfig.DB.level == 1) {
+        //     let isguide = localStorage.getItem('guide1');
+        //     if (isguide != null && isguide != '') {
+        //         return;
+        //     }
+        //     let cellSize = this.cellSize; // 每个格子的大小为 100x100
 
-            let steps: Array<GuideStep> = []
-            //查找10的位置
-            let grid = this.board.children[10];
-            let grid2 = this.board.children[5];
-            steps.push(
-                {
-                    path: 'SpriteSplash',
-                    text: '若前方无任何遮挡 /n 可点击小狗直接离开',
-                    root: grid,
-                    func: () => {
-                        this.dir.getChildByName("arrow_6").getComponent(Arrow).move(null);
-                    },
-                    radius: 200
-                },
-                {
-                    path: 'SpriteSplash',
-                    text: '若前方挡住时 /n 可拖动小狗旋转离开',
-                    // root: grid2,
-                    pos: grid2.getWorldPosition().subtract(new Vec3(cellSize, 0, 0)),
-                    radius: 200,
-                    initFunc: (node: Node) => {
-                        let a = this.dir.getChildByName("arrow_0");
-                        let ta = a.getComponent(Arrow);
-                        let arrow = this.createArrow(0, a.angle, ta.width, false);
-                        arrow.node.name = 'guideArrow'
-                        arrow.node.setWorldPosition(a.getWorldPosition());
-                        let op = arrow.node.addComponent(UIOpacity);
-                        op.opacity = 255 * 0.5;
-                        tween(arrow.node).to(0.5, {
-                            angle: 0
-                        }).delay(0.5).call(() => {
-                            arrow.node.angle = a.angle;
-                        }).union().repeatForever().start();
+        //     let steps: Array<GuideStep> = []
+        //     //查找10的位置
+        //     let grid = this.board.children[10];
+        //     let grid2 = this.board.children[5];
+        //     steps.push(
+        //         {
+        //             path: 'SpriteSplash',
+        //             text: '若前方无任何遮挡 /n 可点击小狗直接离开',
+        //             root: grid,
+        //             func: () => {
+        //                 this.dir.getChildByName("arrow_6").getComponent(Arrow).move(null);
+        //             },
+        //             radius: 200
+        //         },
+        //         {
+        //             path: 'SpriteSplash',
+        //             text: '若前方挡住时 /n 可拖动小狗旋转离开',
+        //             // root: grid2,
+        //             pos: grid2.getWorldPosition().subtract(new Vec3(cellSize, 0, 0)),
+        //             radius: 200,
+        //             initFunc: (node: Node) => {
+        //                 let a = this.dir.getChildByName("arrow_0");
+        //                 let ta = a.getComponent(Arrow);
+        //                 let arrow = this.createArrow(0, a.angle, ta.width, false);
+        //                 arrow.node.name = 'guideArrow'
+        //                 arrow.node.setWorldPosition(a.getWorldPosition());
+        //                 let op = arrow.node.addComponent(UIOpacity);
+        //                 op.opacity = 255 * 0.5;
+        //                 tween(arrow.node).to(0.5, {
+        //                     angle: 0
+        //                 }).delay(0.5).call(() => {
+        //                     arrow.node.angle = a.angle;
+        //                 }).union().repeatForever().start();
 
-                        // //手指的动作
-                        let handParent = node.getChildByName('clickBtn');
-                        handParent.getComponent(Animation).stop();
-                        let hand = handParent.children[0];
+        //                 // //手指的动作
+        //                 let handParent = node.getChildByName('clickBtn');
+        //                 handParent.getComponent(Animation).stop();
+        //                 let hand = handParent.children[0];
 
-                        let pos1 = this.board.children[2].getWorldPosition();
-                        hand.setWorldPosition(pos1);
-                        let pos2 = this.board.children[9].getWorldPosition();
-                        tween(hand).to(0.5, {
-                            worldPosition: pos2.clone()
-                        }).delay(0.5).call(() => {
-                            hand.setWorldPosition(pos1)
-                        }).union().repeatForever().start();
-                    },
-                    touchFunc: (e) => {
-                        let a = this.dir.getChildByName("arrow_0");
-                        a.emit(Node.EventType.TOUCH_START, e);
-                    },
+        //                 let pos1 = this.board.children[2].getWorldPosition();
+        //                 hand.setWorldPosition(pos1);
+        //                 let pos2 = this.board.children[9].getWorldPosition();
+        //                 tween(hand).to(0.5, {
+        //                     worldPosition: pos2.clone()
+        //                 }).delay(0.5).call(() => {
+        //                     hand.setWorldPosition(pos1)
+        //                 }).union().repeatForever().start();
+        //             },
+        //             touchFunc: (e) => {
+        //                 let a = this.dir.getChildByName("arrow_0");
+        //                 a.emit(Node.EventType.TOUCH_START, e);
+        //             },
 
-                    moveFunc: (e) => {
-                        let a = this.dir.getChildByName("arrow_0");
-                        a.emit(Node.EventType.TOUCH_MOVE, e);
-                    },
+        //             moveFunc: (e) => {
+        //                 let a = this.dir.getChildByName("arrow_0");
+        //                 a.emit(Node.EventType.TOUCH_MOVE, e);
+        //             },
 
-                    endFunc: (e, node: Node) => {
-                        let a = this.dir.getChildByName("arrow_0");
-                        a.emit(Node.EventType.TOUCH_END, e);
-                        let com = a.getComponent(Arrow);
-                        if (com.isOver) {
-                            // node.destroy();
-                            UIGuide.guide.close();
+        //             endFunc: (e, node: Node) => {
+        //                 let a = this.dir.getChildByName("arrow_0");
+        //                 a.emit(Node.EventType.TOUCH_END, e);
+        //                 let com = a.getComponent(Arrow);
+        //                 if (com.isOver) {
+        //                     // // node.destroy();
+        //                     // UIGuide.guide.close();
 
-                            this.clearArrowTip();
-                            localStorage.setItem('guide1', '1');
-                        }
-                    }
-                }
-            )
-            UIGuide.create(steps)
-        }
+        //                     this.clearArrowTip();
+        //                     localStorage.setItem('guide1', '1');
+        //                 }
+        //             }
+        //         }
+        //     )
+        //     // UIGuide.create(steps)
+        // }
 
         // console.log(this.curGuideData.length, this.arrows.length);
 

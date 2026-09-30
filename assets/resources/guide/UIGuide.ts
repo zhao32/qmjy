@@ -59,6 +59,8 @@ export class UIGuide {
     static guide: UIGuide;
 
     public static create(step: Array<GuideStep>): UIGuide {
+        return
+
         if (this.guide == null) {
             let guide = new UIGuide();
             guide.init(step);
@@ -71,6 +73,7 @@ export class UIGuide {
     pos: Vec2;
 
     init(step: Array<GuideStep>) {
+        return
         this.guidsSteps = step;
         // this.loadUIPrefab('UIGuide', BundleConfig.Com);
         resources.load('guide/UIGuide', Prefab, (err, fab: Prefab) => {
@@ -81,6 +84,8 @@ export class UIGuide {
     }
 
     protected initPrefabUI(node: Node): void {
+        return
+
         this.node = node;
         //获取mask 
         const mask = node.getChildByName('mask').getComponent(ViewHoleMask);
@@ -94,12 +99,16 @@ export class UIGuide {
     }
 
     reload(step: Array<GuideStep>, radius: number, pos: Vec2, color: Color = Color.WHITE) {
+        return
+
         this.guidsSteps = step;
         this.stepIndex = 0;
     }
 
     step: GuideStep;
     startGuideStep() {
+        return
+
         if (this.stepIndex >= this.guidsSteps.length) {
             this.close();
         } else {
@@ -168,6 +177,8 @@ export class UIGuide {
 
 
     onClick() {
+        return
+
         this.mask.setHolePosition(Vec2.ZERO);
         this.mask.setHoleRadius(0);
         this.clickBtn.active = false;
@@ -189,6 +200,8 @@ export class UIGuide {
     }
 
     close() {
+        return
+
         console.log("close guide step");
         Tween.stopAllByTarget(this.node.getChildByName("arrowPrefab"));
 

@@ -5,7 +5,7 @@ import { Engine } from './Engine';
 import { Circle } from './Circle';
 import { Editor } from './Editor';
 import { AnimationDelegate } from './AnimationDelegate';
-import { GuideStep, UIGuide } from '../resources/guide/UIGuide';
+// import { GuideStep, UIGuide } from '../resources/guide/UIGuide';
 import { Obstacle } from './Obstacle';
 // import { Editor } from './Editor';
 const { ccclass, property } = _decorator;
@@ -367,296 +367,297 @@ export class Arrow extends Component {
         });
 
 
-        function checkIsGuide() {
+        // function checkIsGuide() {
+        //     return
 
-            if (Engine.instance.curLevel == 2) {
-                //查看当前是否需要提示引导
-                let isguide = localStorage.getItem('guide2');
-                isguide = "true"
-                if (isguide == null || isguide == '') {
+        //     if (Engine.instance.curLevel == 2) {
+        //         //查看当前是否需要提示引导
+        //         let isguide = localStorage.getItem('guide2');
+        //         isguide = "true"
+        //         if (isguide == null || isguide == '') {
 
-                    // let arrow = Engine.instance.dir.getChildByName("arrow_34");
-                    let grid = Engine.instance.board.children[10];
-                    let grid9 = Engine.instance.board.children[9];
-                    let grid3 = Engine.instance.board.children[3];
-                    let grid16 = Engine.instance.board.children[16];
+        //             // let arrow = Engine.instance.dir.getChildByName("arrow_34");
+        //             let grid = Engine.instance.board.children[10];
+        //             let grid9 = Engine.instance.board.children[9];
+        //             let grid3 = Engine.instance.board.children[3];
+        //             let grid16 = Engine.instance.board.children[16];
 
-                    let arrow3 = Engine.instance.dir.getChildByName("arrow_34");
-                    let toangle3 = Utils.calculateTouchAngle360(grid9.getWorldPosition(), arrow3.getWorldPosition());
+        //             let arrow3 = Engine.instance.dir.getChildByName("arrow_34");
+        //             let toangle3 = Utils.calculateTouchAngle360(grid9.getWorldPosition(), arrow3.getWorldPosition());
 
-                    let arrow4 = Engine.instance.dir.getChildByName('arrow_17');
-                    let toangle4 = Utils.calculateTouchAngle360(grid16.getWorldPosition(), arrow4.getWorldPosition());
+        //             let arrow4 = Engine.instance.dir.getChildByName('arrow_17');
+        //             let toangle4 = Utils.calculateTouchAngle360(grid16.getWorldPosition(), arrow4.getWorldPosition());
 
-                    let arrow5 = Engine.instance.dir.getChildByName('arrow_6');
-                    let toangle5 = Utils.calculateTouchAngle(grid.getWorldPosition(), arrow5.getWorldPosition());
+        //             let arrow5 = Engine.instance.dir.getChildByName('arrow_6');
+        //             let toangle5 = Utils.calculateTouchAngle(grid.getWorldPosition(), arrow5.getWorldPosition());
 
-                    if (self.node.name == 'arrow_21') {
-                        // console.log("开始引导--------");
-                        let steps: Array<GuideStep> = [];
-                        //查找10的位置
-                        steps.push(
-                            {
-                                path: 'btnTip',
-                                text: '找不出可移动的河马时 /n 可以试试使用提示',
-                                root: Engine.instance.uigame,
-                                initFunc() {
-                                    let btn = Engine.instance.uigame.getChildByName("btnTip");
-                                    btn.children[0].active = true;
-                                },
-                                func: () => {
+        //             if (self.node.name == 'arrow_21') {
+        //                 // console.log("开始引导--------");
+        //                 let steps: Array<GuideStep> = [];
+        //                 //查找10的位置
+        //                 steps.push(
+        //                     {
+        //                         path: 'btnTip',
+        //                         text: '找不出可移动的河马时 /n 可以试试使用提示',
+        //                         root: Engine.instance.uigame,
+        //                         initFunc() {
+        //                             let btn = Engine.instance.uigame.getChildByName("btnTip");
+        //                             btn.children[0].active = true;
+        //                         },
+        //                         func: () => {
 
-                                },
-                                radius: 200
-                            },
-                            {
-                                pos: Engine.instance.board.children[20].getWorldPosition(),
-                                radius: 200,
-                                text: "提示时，可以直接消除一个河马！",
-                                path: '',
+        //                         },
+        //                         radius: 200
+        //                     },
+        //                     {
+        //                         pos: Engine.instance.board.children[20].getWorldPosition(),
+        //                         radius: 200,
+        //                         text: "提示时，可以直接消除一个河马！",
+        //                         path: '',
 
-                                initFunc: (node: Node) => {
-                                    let a = Engine.instance.dir.getChildByName("arrow_13");
-                                    let ta = a.getComponent(Arrow);
-                                    let arrow = Engine.instance.createArrow(0, a.angle, ta.width, false);
-                                    arrow.node.name = 'guideArrow'
-                                    arrow.node.setWorldPosition(a.getWorldPosition());
-                                    let op = arrow.node.addComponent(UIOpacity);
-                                    op.opacity = 255 * 0.5;
-                                    tween(arrow.node).to(0.5, {
-                                        angle: 0
-                                    }).delay(0.5).call(() => {
-                                        arrow.node.angle = a.angle;
-                                    }).union().repeatForever().start();
+        //                         initFunc: (node: Node) => {
+        //                             let a = Engine.instance.dir.getChildByName("arrow_13");
+        //                             let ta = a.getComponent(Arrow);
+        //                             let arrow = Engine.instance.createArrow(0, a.angle, ta.width, false);
+        //                             arrow.node.name = 'guideArrow'
+        //                             arrow.node.setWorldPosition(a.getWorldPosition());
+        //                             let op = arrow.node.addComponent(UIOpacity);
+        //                             op.opacity = 255 * 0.5;
+        //                             tween(arrow.node).to(0.5, {
+        //                                 angle: 0
+        //                             }).delay(0.5).call(() => {
+        //                                 arrow.node.angle = a.angle;
+        //                             }).union().repeatForever().start();
 
-                                    // //手指的动作
-                                    let handParent = node.getChildByName('clickBtn');
-                                    handParent.getComponent(Animation).stop();
-                                    let hand = handParent.children[0];
+        //                             // //手指的动作
+        //                             let handParent = node.getChildByName('clickBtn');
+        //                             handParent.getComponent(Animation).stop();
+        //                             let hand = handParent.children[0];
 
-                                    let pos1 = Engine.instance.board.children[15].getWorldPosition();
-                                    hand.setWorldPosition(pos1);
-                                    let pos2 = Engine.instance.board.children[26].getWorldPosition();
-                                    tween(hand).to(0.5, {
-                                        worldPosition: pos2.clone()
-                                    }).delay(0.5).call(() => {
-                                        hand.setWorldPosition(pos1)
-                                    }).union().repeatForever().start();
-                                },
-                                touchFunc: (e) => {
-                                    let a = Engine.instance.dir.getChildByName("arrow_13");
-                                    a.emit(Node.EventType.TOUCH_START, e);
-                                },
+        //                             let pos1 = Engine.instance.board.children[15].getWorldPosition();
+        //                             hand.setWorldPosition(pos1);
+        //                             let pos2 = Engine.instance.board.children[26].getWorldPosition();
+        //                             tween(hand).to(0.5, {
+        //                                 worldPosition: pos2.clone()
+        //                             }).delay(0.5).call(() => {
+        //                                 hand.setWorldPosition(pos1)
+        //                             }).union().repeatForever().start();
+        //                         },
+        //                         touchFunc: (e) => {
+        //                             let a = Engine.instance.dir.getChildByName("arrow_13");
+        //                             a.emit(Node.EventType.TOUCH_START, e);
+        //                         },
 
-                                moveFunc: (e) => {
-                                    let a = Engine.instance.dir.getChildByName("arrow_13");
-                                    a.emit(Node.EventType.TOUCH_MOVE, e);
-                                },
+        //                         moveFunc: (e) => {
+        //                             let a = Engine.instance.dir.getChildByName("arrow_13");
+        //                             a.emit(Node.EventType.TOUCH_MOVE, e);
+        //                         },
 
-                                endFunc: (e, node: Node, guide) => {
-                                    let a = Engine.instance.dir.getChildByName("arrow_13");
-                                    a.emit(Node.EventType.TOUCH_END, e);
-                                    if (a.angle == 0 || node.angle == 360) {
-                                        //进入下一个提示
-                                        console.log("-----------")
-                                        Engine.instance.clearArrowTip();
-                                        guide.onClick();
-                                    }
-                                    console.log(node);
-                                }
+        //                         endFunc: (e, node: Node, guide) => {
+        //                             let a = Engine.instance.dir.getChildByName("arrow_13");
+        //                             a.emit(Node.EventType.TOUCH_END, e);
+        //                             if (a.angle == 0 || node.angle == 360) {
+        //                                 //进入下一个提示
+        //                                 console.log("-----------")
+        //                                 Engine.instance.clearArrowTip();
+        //                                 guide.onClick();
+        //                             }
+        //                             console.log(node);
+        //                         }
 
-                            },
-                            {
-                                pos: Engine.instance.board.children[16].getWorldPosition(),
-                                radius: 200,
-                                text: "提示时，可以直接消除一个河马！",
-                                path: '',
-                                initFunc: (node: Node) => {
-                                    // let a = Engine.instance.dir.getChildByName("arrow_13");
-                                    let ta = arrow3.getComponent(Arrow);
-                                    let arrow = Engine.instance.createArrow(0, arrow3.angle, ta.width, false);
-                                    arrow.node.name = 'guideArrow'
-                                    arrow.node.setWorldPosition(arrow3.getWorldPosition());
-                                    let op = arrow.node.addComponent(UIOpacity);
-                                    op.opacity = 255 * 0.5;
-                                    Tween.stopAllByTarget(arrow.node);
-                                    tween(arrow.node).to(0.5, {
-                                        angle: toangle3
-                                    }).delay(0.5).call(() => {
-                                        arrow.node.angle = arrow3.angle;
-                                    }).union().repeatForever().start();
+        //                     },
+        //                     {
+        //                         pos: Engine.instance.board.children[16].getWorldPosition(),
+        //                         radius: 200,
+        //                         text: "提示时，可以直接消除一个河马！",
+        //                         path: '',
+        //                         initFunc: (node: Node) => {
+        //                             // let a = Engine.instance.dir.getChildByName("arrow_13");
+        //                             let ta = arrow3.getComponent(Arrow);
+        //                             let arrow = Engine.instance.createArrow(0, arrow3.angle, ta.width, false);
+        //                             arrow.node.name = 'guideArrow'
+        //                             arrow.node.setWorldPosition(arrow3.getWorldPosition());
+        //                             let op = arrow.node.addComponent(UIOpacity);
+        //                             op.opacity = 255 * 0.5;
+        //                             Tween.stopAllByTarget(arrow.node);
+        //                             tween(arrow.node).to(0.5, {
+        //                                 angle: toangle3
+        //                             }).delay(0.5).call(() => {
+        //                                 arrow.node.angle = arrow3.angle;
+        //                             }).union().repeatForever().start();
 
-                                    // //手指的动作
-                                    let handParent = node.getChildByName('clickBtn');
-                                    handParent.getComponent(Animation).stop();
-                                    let hand = handParent.children[0];
-                                    Tween.stopAllByTarget(hand);
+        //                             // //手指的动作
+        //                             let handParent = node.getChildByName('clickBtn');
+        //                             handParent.getComponent(Animation).stop();
+        //                             let hand = handParent.children[0];
+        //                             Tween.stopAllByTarget(hand);
 
-                                    let pos1 = Engine.instance.board.children[10].getWorldPosition();
-                                    hand.setWorldPosition(pos1);
-                                    let pos2 = Engine.instance.board.children[9].getWorldPosition();
-                                    tween(hand).to(0.5, {
-                                        worldPosition: pos2.clone()
-                                    }).delay(0.5).call(() => {
-                                        hand.setWorldPosition(pos1)
-                                    }).union().repeatForever().start();
-                                },
-                                touchFunc: (e) => {
-                                    arrow3.emit(Node.EventType.TOUCH_START, e);
-                                },
+        //                             let pos1 = Engine.instance.board.children[10].getWorldPosition();
+        //                             hand.setWorldPosition(pos1);
+        //                             let pos2 = Engine.instance.board.children[9].getWorldPosition();
+        //                             tween(hand).to(0.5, {
+        //                                 worldPosition: pos2.clone()
+        //                             }).delay(0.5).call(() => {
+        //                                 hand.setWorldPosition(pos1)
+        //                             }).union().repeatForever().start();
+        //                         },
+        //                         touchFunc: (e) => {
+        //                             arrow3.emit(Node.EventType.TOUCH_START, e);
+        //                         },
 
-                                moveFunc: (e) => {
-                                    arrow3.emit(Node.EventType.TOUCH_MOVE, e);
-                                },
+        //                         moveFunc: (e) => {
+        //                             arrow3.emit(Node.EventType.TOUCH_MOVE, e);
+        //                         },
 
-                                endFunc: (e, node: Node, guide) => {
-                                    arrow3.emit(Node.EventType.TOUCH_END, e);
-                                    if (arrow3.angle == toangle3) {
-                                        //进入下一个提示
-                                        console.log("-----------222222")
-                                        Engine.instance.clearArrowTip();
-                                        guide.onClick();
-                                    }
-                                    console.log(node);
-                                }
-                            },
-                            {
-                                pos: grid.getWorldPosition(),
-                                radius: 200,
-                                text: "提示时，可以直接消除一个河马！",
-                                path: '',
-                                initFunc: (node: Node) => {
-                                    // let a = Engine.instance.dir.getChildByName("arrow_13");
-                                    let angle4 = arrow4.angle;
-                                    let ta = arrow4.getComponent(Arrow);
-                                    let arrow = Engine.instance.createArrow(0, arrow4.angle, ta.width, false);
-                                    arrow.node.name = 'guideArrow'
-                                    arrow.node.setWorldPosition(arrow4.getWorldPosition());
-                                    let op = arrow.node.addComponent(UIOpacity);
-                                    op.opacity = 255 * 0.5;
-                                    Tween.stopAllByTarget(arrow.node);
-                                    tween(arrow.node).to(0.5, {
-                                        angle: toangle4
-                                    }).delay(0.5).call(() => {
-                                        arrow.node.angle = angle4;
-                                    }).union().repeatForever().start();
+        //                         endFunc: (e, node: Node, guide) => {
+        //                             arrow3.emit(Node.EventType.TOUCH_END, e);
+        //                             if (arrow3.angle == toangle3) {
+        //                                 //进入下一个提示
+        //                                 console.log("-----------222222")
+        //                                 Engine.instance.clearArrowTip();
+        //                                 guide.onClick();
+        //                             }
+        //                             console.log(node);
+        //                         }
+        //                     },
+        //                     {
+        //                         pos: grid.getWorldPosition(),
+        //                         radius: 200,
+        //                         text: "提示时，可以直接消除一个河马！",
+        //                         path: '',
+        //                         initFunc: (node: Node) => {
+        //                             // let a = Engine.instance.dir.getChildByName("arrow_13");
+        //                             let angle4 = arrow4.angle;
+        //                             let ta = arrow4.getComponent(Arrow);
+        //                             let arrow = Engine.instance.createArrow(0, arrow4.angle, ta.width, false);
+        //                             arrow.node.name = 'guideArrow'
+        //                             arrow.node.setWorldPosition(arrow4.getWorldPosition());
+        //                             let op = arrow.node.addComponent(UIOpacity);
+        //                             op.opacity = 255 * 0.5;
+        //                             Tween.stopAllByTarget(arrow.node);
+        //                             tween(arrow.node).to(0.5, {
+        //                                 angle: toangle4
+        //                             }).delay(0.5).call(() => {
+        //                                 arrow.node.angle = angle4;
+        //                             }).union().repeatForever().start();
 
-                                    // //手指的动作
-                                    let handParent = node.getChildByName('clickBtn');
-                                    handParent.getComponent(Animation).stop();
-                                    let hand = handParent.children[0];
-                                    Tween.stopAllByTarget(hand);
+        //                             // //手指的动作
+        //                             let handParent = node.getChildByName('clickBtn');
+        //                             handParent.getComponent(Animation).stop();
+        //                             let hand = handParent.children[0];
+        //                             Tween.stopAllByTarget(hand);
 
-                                    let pos1 = Engine.instance.board.children[11].getWorldPosition();
-                                    hand.setWorldPosition(pos1);
-                                    let pos2 = Engine.instance.board.children[16].getWorldPosition();
-                                    tween(hand).to(0.5, {
-                                        worldPosition: pos2.clone()
-                                    }).delay(0.5).call(() => {
-                                        hand.setWorldPosition(pos1)
-                                    }).union().repeatForever().start();
-                                },
-                                touchFunc: (e) => {
-                                    arrow4.emit(Node.EventType.TOUCH_START, e);
-                                },
+        //                             let pos1 = Engine.instance.board.children[11].getWorldPosition();
+        //                             hand.setWorldPosition(pos1);
+        //                             let pos2 = Engine.instance.board.children[16].getWorldPosition();
+        //                             tween(hand).to(0.5, {
+        //                                 worldPosition: pos2.clone()
+        //                             }).delay(0.5).call(() => {
+        //                                 hand.setWorldPosition(pos1)
+        //                             }).union().repeatForever().start();
+        //                         },
+        //                         touchFunc: (e) => {
+        //                             arrow4.emit(Node.EventType.TOUCH_START, e);
+        //                         },
 
-                                moveFunc: (e) => {
-                                    arrow4.emit(Node.EventType.TOUCH_MOVE, e);
-                                },
+        //                         moveFunc: (e) => {
+        //                             arrow4.emit(Node.EventType.TOUCH_MOVE, e);
+        //                         },
 
-                                endFunc: (e, node: Node, guide) => {
-                                    arrow4.emit(Node.EventType.TOUCH_END, e);
-                                    if (arrow4.angle == toangle4 || arrow4.angle == -90) {
-                                        //进入下一个提示
-                                        console.log("-----------3333333333333")
-                                        Engine.instance.clearArrowTip();
-                                        guide.onClick();
-                                    }
-                                    console.log(node);
-                                }
-                            },
-                            {
-                                pos: grid.getWorldPosition(),
-                                radius: 200,
-                                text: "提示时，可以直接消除一个河马！",
-                                path: '',
-                                initFunc: (node: Node) => {
-                                    // let a = Engine.instance.dir.getChildByName("arrow_13");
-                                    let angle5 = arrow5.angle;
-                                    let ta = arrow5.getComponent(Arrow);
-                                    let arrow = Engine.instance.createArrow(0, arrow5.angle, ta.width, false);
-                                    arrow.node.name = 'guideArrow'
-                                    arrow.node.setWorldPosition(arrow5.getWorldPosition());
-                                    let op = arrow.node.addComponent(UIOpacity);
-                                    op.opacity = 255 * 0.5;
-                                    Tween.stopAllByTarget(arrow.node);
-                                    tween(arrow.node).to(0.5, {
-                                        angle: toangle5
-                                    }).delay(0.5).call(() => {
-                                        arrow.node.angle = angle5;
-                                    }).union().repeatForever().start();
+        //                         endFunc: (e, node: Node, guide) => {
+        //                             arrow4.emit(Node.EventType.TOUCH_END, e);
+        //                             if (arrow4.angle == toangle4 || arrow4.angle == -90) {
+        //                                 //进入下一个提示
+        //                                 console.log("-----------3333333333333")
+        //                                 Engine.instance.clearArrowTip();
+        //                                 guide.onClick();
+        //                             }
+        //                             console.log(node);
+        //                         }
+        //                     },
+        //                     {
+        //                         pos: grid.getWorldPosition(),
+        //                         radius: 200,
+        //                         text: "提示时，可以直接消除一个河马！",
+        //                         path: '',
+        //                         initFunc: (node: Node) => {
+        //                             // let a = Engine.instance.dir.getChildByName("arrow_13");
+        //                             let angle5 = arrow5.angle;
+        //                             let ta = arrow5.getComponent(Arrow);
+        //                             let arrow = Engine.instance.createArrow(0, arrow5.angle, ta.width, false);
+        //                             arrow.node.name = 'guideArrow'
+        //                             arrow.node.setWorldPosition(arrow5.getWorldPosition());
+        //                             let op = arrow.node.addComponent(UIOpacity);
+        //                             op.opacity = 255 * 0.5;
+        //                             Tween.stopAllByTarget(arrow.node);
+        //                             tween(arrow.node).to(0.5, {
+        //                                 angle: toangle5
+        //                             }).delay(0.5).call(() => {
+        //                                 arrow.node.angle = angle5;
+        //                             }).union().repeatForever().start();
 
-                                    // //手指的动作
-                                    let handParent = node.getChildByName('clickBtn');
-                                    handParent.getComponent(Animation).stop();
-                                    let hand = handParent.children[0];
-                                    Tween.stopAllByTarget(hand);
+        //                             // //手指的动作
+        //                             let handParent = node.getChildByName('clickBtn');
+        //                             handParent.getComponent(Animation).stop();
+        //                             let hand = handParent.children[0];
+        //                             Tween.stopAllByTarget(hand);
 
-                                    let pos1 = Engine.instance.board.children[3].getWorldPosition();
-                                    hand.setWorldPosition(pos1);
-                                    let pos2 = Engine.instance.board.children[10].getWorldPosition();
-                                    tween(hand).to(0.5, {
-                                        worldPosition: pos2.clone()
-                                    }).delay(0.5).call(() => {
-                                        hand.setWorldPosition(pos1)
-                                    }).union().repeatForever().start();
-                                },
-                                touchFunc: (e) => {
-                                    arrow5.emit(Node.EventType.TOUCH_START, e);
-                                },
+        //                             let pos1 = Engine.instance.board.children[3].getWorldPosition();
+        //                             hand.setWorldPosition(pos1);
+        //                             let pos2 = Engine.instance.board.children[10].getWorldPosition();
+        //                             tween(hand).to(0.5, {
+        //                                 worldPosition: pos2.clone()
+        //                             }).delay(0.5).call(() => {
+        //                                 hand.setWorldPosition(pos1)
+        //                             }).union().repeatForever().start();
+        //                         },
+        //                         touchFunc: (e) => {
+        //                             arrow5.emit(Node.EventType.TOUCH_START, e);
+        //                         },
 
-                                moveFunc: (e) => {
-                                    arrow5.emit(Node.EventType.TOUCH_MOVE, e);
-                                },
+        //                         moveFunc: (e) => {
+        //                             arrow5.emit(Node.EventType.TOUCH_MOVE, e);
+        //                         },
 
-                                endFunc: (e, node: Node, guide) => {
-                                    arrow5.emit(Node.EventType.TOUCH_END, e);
-                                    if (arrow5.angle == toangle5) {
-                                        //进入下一个提示
-                                        console.log("-----------3333333333333")
-                                        Engine.instance.clearArrowTip();
-                                        guide.onClick();
-                                    }
-                                    console.log(node);
-                                }
-                            },
-                            {
-                                pos: grid9.getWorldPosition(),
-                                radius: 100,
-                                text: "提示时，可以直接消除一个河马！",
-                                path: '',
-                                initFunc: (node: Node) => {
-                                    // //手指的动作
-                                    let handParent = node.getChildByName('clickBtn');
-                                    let hand = handParent.children[0];
-                                    Tween.stopAllByTarget(hand);
-                                    handParent.getComponent(Animation).play();
+        //                         endFunc: (e, node: Node, guide) => {
+        //                             arrow5.emit(Node.EventType.TOUCH_END, e);
+        //                             if (arrow5.angle == toangle5) {
+        //                                 //进入下一个提示
+        //                                 console.log("-----------3333333333333")
+        //                                 Engine.instance.clearArrowTip();
+        //                                 guide.onClick();
+        //                             }
+        //                             console.log(node);
+        //                         }
+        //                     },
+        //                     {
+        //                         pos: grid9.getWorldPosition(),
+        //                         radius: 100,
+        //                         text: "提示时，可以直接消除一个河马！",
+        //                         path: '',
+        //                         initFunc: (node: Node) => {
+        //                             // //手指的动作
+        //                             let handParent = node.getChildByName('clickBtn');
+        //                             let hand = handParent.children[0];
+        //                             Tween.stopAllByTarget(hand);
+        //                             handParent.getComponent(Animation).play();
 
-                                },
-                                func: () => {
-                                    arrow3.getComponent(Arrow).move(null);
-                                    Engine.instance.clearArrowTip();
-                                    localStorage.setItem('guide2', '1');
-                                    let btn = Engine.instance.uigame.getChildByName("btnTip");
-                                    btn.children[0].active = false;
-                                }
-                            }
-                        )
-                        UIGuide.create(steps)
-                    }
-                }
+        //                         },
+        //                         func: () => {
+        //                             arrow3.getComponent(Arrow).move(null);
+        //                             Engine.instance.clearArrowTip();
+        //                             localStorage.setItem('guide2', '1');
+        //                             let btn = Engine.instance.uigame.getChildByName("btnTip");
+        //                             btn.children[0].active = false;
+        //                         }
+        //                     }
+        //                 )
+        //                 UIGuide.create(steps)
+        //             }
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
         function checkEnd() {
 
@@ -733,7 +734,7 @@ export class Arrow extends Component {
                                 arrowNode.angle = targetAngle;
 
                                 self.move(highlightedCircle);
-                                checkIsGuide();
+                                // checkIsGuide();
                                 break;
                             }
                         }
@@ -754,7 +755,7 @@ export class Arrow extends Component {
                             otherArrow = Engine.instance.canMoveTowardArrow(self, inputCircle);
                             if (!otherArrow) {
                                 self.move(inputCircle);
-                                checkIsGuide();
+                                // checkIsGuide();
                             }
                         }
                     }

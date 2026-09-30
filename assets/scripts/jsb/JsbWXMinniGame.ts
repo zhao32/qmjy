@@ -20,7 +20,7 @@ export class JsbWXMinniGame extends Jsb {
 
     public init() {
 
-
+        return
         wx.showShareMenu({
             withShareTicket: true
         });
@@ -40,6 +40,7 @@ export class JsbWXMinniGame extends Jsb {
     settingResult: WechatMinigame.GetSettingSuccessCallbackResult;
 
     public initAd(): void {
+        return
         // 接口上报示例代码，当基础库版本>=2.26.2才能使用此能力
         wx.reportScene({
             sceneId: 7,  //「必填」sceneId 为「新建场景」后，由系统生成的场景 Id 值，用于区分当前是哪个启动场景的数据
@@ -55,6 +56,7 @@ export class JsbWXMinniGame extends Jsb {
     }
 
     public login() {
+        return
         return new Promise((resolve, reject) => {
             wx.login({
                 success: (res) => {
@@ -76,6 +78,7 @@ export class JsbWXMinniGame extends Jsb {
 
     /** 返回游戏回调*/
     ReturnToGame(result: WechatMinigame.OnShowListenerResult) {
+        return
         this.sceneToGame(result.scene);
     }
 
@@ -161,6 +164,7 @@ export class JsbWXMinniGame extends Jsb {
     videoSuccessCallBack: Function;
     videoFailCallBack: Function;
     public playRewardVideo(adid: string, params: any) {
+        return
         return new Promise((resolve, reject) => {
             this.videoSuccessCallBack = resolve;
             this.videoFailCallBack = reject;
@@ -229,6 +233,7 @@ export class JsbWXMinniGame extends Jsb {
     }
 
     hideBannder() {
+        return
         // console.log("广告隐藏")
         if (this.bannerAd) {
             this.bannerAd.hide()
@@ -236,6 +241,8 @@ export class JsbWXMinniGame extends Jsb {
     }
 
     showBannder() {
+        return
+
         // console.log("广告显示")
         if (this.bannerAd) {
             this.bannerAd.show()
@@ -244,6 +251,7 @@ export class JsbWXMinniGame extends Jsb {
 
     shareTime: number;
     public share() {
+        return
         return new Promise((resolve, reject) => {
             this.shareTime = new Date().getTime();
 
@@ -259,6 +267,7 @@ export class JsbWXMinniGame extends Jsb {
 
 
     completeLevel(level: number, maxLevel: number) {
+        return
         console.log("completeLevel");
         wx.setUserCloudStorage({ //调用微信接口上报关卡等级信息，用于好友圈排行
             KVDataList: [
@@ -281,6 +290,7 @@ export class JsbWXMinniGame extends Jsb {
 
 
     public showRankView(key: string) {
+        return
         let openContext = wx.getOpenDataContext(); // 调用微信接口获取子域句柄，使用时需要检查
         if (openContext) {
             openContext.postMessage({ type: 'engine', event: key }); // level为自定义key，如果没有特殊需求，建议直接用。否则你的变动比较大，调整wx-sub-project/index.js的对应的key和this._reportUserLevel的key都需要对齐
